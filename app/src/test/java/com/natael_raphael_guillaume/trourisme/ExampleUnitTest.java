@@ -1,4 +1,4 @@
-package com.natael_raphael_guillaume.agencetouristique;
+package com.natael_raphael_guillaume.trourisme;
 
 import org.junit.Test;
 
