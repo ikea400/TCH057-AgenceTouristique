@@ -8,34 +8,34 @@ import com.natael_raphael_guillaume.tourisme.modele.entite.Client;
 import com.natael_raphael_guillaume.tourisme.viewModele.EcouteurDeDonnees;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpJsonService {
     private static final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     public static void getClients(String email, String mdp, EcouteurDeDonnees chargeurDeDonnees) {
-        //?email=francois.dubois@example.com&mdp=Dubois!456
-        String path = "";
+        StringJoiner pathJoiner = new StringJoiner("&");
+
         if (email != null && !email.isBlank()) {
-            path += "email=" + email;
+            pathJoiner.add("email=" + email);
         }
         if (mdp != null && !mdp.isBlank()) {
-            if (!path.isEmpty()) {
-                path += "&";
-            }
-            path += "mdp=" + mdp;
+            pathJoiner.add("mdp=" + mdp);
         }
 
-        if (!path.isEmpty()) {
-            path = "?" + path;
-        }
+        String path = pathJoiner.length() > 0 ? "?" + pathJoiner : "";
 
         OkHttpClient okHttpClient = new OkHttpClient();
 
@@ -61,9 +61,55 @@ public class HttpJsonService {
             }
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                chargeurDeDonnees.onError("Problème");
+                chargeurDeDonnees.onError("Problème de communication avec le server");
                 call.cancel();
             }
         });
     }
+
+    public static void addClients(Client client, EcouteurDeDonnees chargeurDeDonnees) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String jsonString;
+        try {
+            jsonString = mapper.writeValueAsString(client);
+        }
+        catch (JsonProcessingException e) {
+            chargeurDeDonnees.onError("Probleme de sérialisation");
+            return;
+        }
+
+        RequestBody body = RequestBody.create(jsonString, JSON);
+        Request request = new Request.Builder()
+                .url(URL_POINT_ENTREE + "/clients")
+                .post(body)
+                .build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                assert response.body() != null;
+                final String jsonStr = response.body().string();
+                //Traitement de la réponse ici
+                if (!jsonStr.isEmpty()) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    try {
+                        Client resultat = mapper.readValue(jsonStr, Client.class);
+                        chargeurDeDonnees.onDataLoaded(resultat);
+                    } catch (JsonProcessingException e) {
+                        chargeurDeDonnees.onError("Problème du JSON dans les clients reçus: " + jsonStr);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                chargeurDeDonnees.onError("Problème de communication avec le server");
+                call.cancel();
+            }
+        });
+    }
+
 }

@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editRegisterNom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -60,7 +60,7 @@
         android:autofillHints="name"/>
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/editRegisterPrenom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -74,7 +74,7 @@
         android:autofillHints="name"/>
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/editRegisterEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -83,12 +83,12 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3"
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterPrenom"
         android:hint="Courriel"
         android:autofillHints="emailAddress"/>
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/editRegisterAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -98,10 +98,10 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterEmail" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/editRegisterTelephone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -110,12 +110,12 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterAge"
         android:hint="Telephone"
         android:autofillHints="phone"/>
 
     <EditText
-        android:id="@+id/editTextTextPostalAddress"
+        android:id="@+id/editRegisterAddresse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -124,12 +124,12 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterTelephone"
         android:hint="Addresse"
         android:autofillHints="postalAddress"/>
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/editRegisterPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -138,22 +138,22 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress"
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterAddresse"
         android:hint="Password"
         android:autofillHints="password"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/registerError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Error"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText2"
+        app:layout_constraintBottom_toTopOf="@+id/editRegisterNom"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         android:textColor="#FF0000"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnDoRegister"
         android:layout_width="211dp"
         android:layout_height="39dp"
         android:layout_marginTop="8dp"
@@ -161,16 +161,16 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterPassword" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnGoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:text="Se connecter"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDoRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

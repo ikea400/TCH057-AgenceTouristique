@@ -1,10 +1,16 @@
 package com.natael_raphael_guillaume.tourisme.modele.entite;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Client {
     private String nom, prenom, email, telephone, mdp, adresse;
-    private int age, id;
+    private int age;
 
-    public Client(String nom, String prenom, String email, String telephone, String mdp, String adresse, int age, int id) {
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
+    public Client(String nom, String prenom, String email, String telephone, String mdp, String adresse, int age, String id) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -78,11 +84,11 @@ public class Client {
         this.age = age;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

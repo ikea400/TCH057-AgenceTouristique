@@ -48,9 +48,32 @@ public class ClientViewModel extends ViewModel {
                 }
             });
         } catch (JSONException e) {
-            erreurLiveData.postValue("Problème dans le JSON des comptes");
+            erreurLiveData.postValue("Problème dans le JSON des clients");
         } catch (IOException e) {
             erreurLiveData.postValue("Problème d'accès à l'API");
         }
+    }
+
+    public void ajouterClient(Client client) {
+        try {
+            ClientDao.addClient(client, new EcouteurDeDonnees() {
+                @Override
+                public void onDataLoaded(Object data) {
+                    Client client = (Client)data;
+
+                    modele.addClient(client);
+                    clientLiveData.postValue(modele.getClients());
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    erreurLiveData.postValue(errorMessage);
+                }
+            });
+    } catch (JSONException e) {
+        erreurLiveData.postValue("Problème dans le JSON des clients");
+    } catch (IOException e) {
+        erreurLiveData.postValue("Problème d'accès à l'API");
+    }
     }
 }

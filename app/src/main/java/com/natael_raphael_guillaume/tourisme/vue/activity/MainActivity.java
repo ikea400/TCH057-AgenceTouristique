@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin;
     private EditText textLoginEmail;
     private EditText textLoginPassword;
+    private TextView loginError;
 
     private ClientViewModel clientViewModel;
 
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         textLoginEmail = findViewById(R.id.textLoginEmail);
         textLoginPassword = findViewById(R.id.textLoginPassword);
+        loginError = findViewById(R.id.loginError);
+
+        loginError.setText("");
 
         // Initialisation du ViewModel
         clientViewModel = new ViewModelProvider(this).get(ClientViewModel.class);
@@ -62,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         clientViewModel.getErreur().observe(this, this::afficherMessage);
 
+        // Clic sur le bouton de connection
         btnLogin.setOnClickListener(v -> {
             String email = textLoginEmail.getText().toString().trim();
             String mdp = textLoginPassword.getText().toString().trim();
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Clic sur le bouton d'enregistrement
         btnLinkRegister.setOnClickListener(v -> {
             Intent intent = new Intent(this, RegisterActivity.class);
 
@@ -86,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void afficherMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        loginError.setText(message);
     }
 }
