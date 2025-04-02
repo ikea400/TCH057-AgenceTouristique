@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/java/com/natael_raphael_guillaume/tourisme/activites/Accueil.java
 package com.natael_raphael_guillaume.tourisme.activites;
-========
-package com.natael_raphael_guillaume.tourisme;
->>>>>>>> origin/master:app/src/main/java/com/natael_raphael_guillaume/tourisme/MainActivity.java
 
 import android.os.Bundle;
 
@@ -12,14 +8,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-<<<<<<<< HEAD:app/src/main/java/com/natael_raphael_guillaume/tourisme/activites/Accueil.java
 import com.natael_raphael_guillaume.tourisme.R;
 
 
 public class Accueil extends AppCompatActivity {
-========
-public class MainActivity extends AppCompatActivity {
->>>>>>>> origin/master:app/src/main/java/com/natael_raphael_guillaume/tourisme/MainActivity.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
