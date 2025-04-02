@@ -1,4 +1,4 @@
-package com.natael_raphael_guillaume.trourisme;
+package com.natael_raphael_guillaume.tourisme.activites;
 
 import android.os.Bundle;
 
@@ -8,9 +8,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.natael_raphael_guillaume.agencetouristique.R;
+import com.natael_raphael_guillaume.tourisme.R;
 
-public class MainActivity extends AppCompatActivity {
+
+public class Accueil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
