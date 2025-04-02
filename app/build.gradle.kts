@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.natael_raphael_guillaume.agencetouristique"
+    namespace = "com.natael_raphael_guillaume.tourisme"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.natael_raphael_guillaume.agencetouristique"
+        applicationId = "com.natael_raphael_guillaume.tourisme"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
