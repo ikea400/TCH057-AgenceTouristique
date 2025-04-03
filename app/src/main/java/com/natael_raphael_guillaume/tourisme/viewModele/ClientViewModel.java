@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModel;
 import com.natael_raphael_guillaume.tourisme.modele.Modele;
 import com.natael_raphael_guillaume.tourisme.modele.ModeleManager;
 import com.natael_raphael_guillaume.tourisme.modele.dao.ClientDao;
+import com.natael_raphael_guillaume.tourisme.modele.dao.VoyageDao;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Client;
+import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 
 import org.json.JSONException;
 
@@ -16,6 +18,7 @@ import java.util.List;
 
 public class ClientViewModel extends ViewModel {
     private final MutableLiveData<List<Client>> clientLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Voyage>> voyageLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> erreurLiveData = new MutableLiveData<>();
 
     private final Modele modele;
@@ -26,6 +29,10 @@ public class ClientViewModel extends ViewModel {
 
     public LiveData<List<Client>> getClients() {
         return clientLiveData;
+    }
+
+    public LiveData<List<Voyage>> getVoyages() {
+        return voyageLiveData;
     }
 
     public LiveData<String> getErreur() {
@@ -59,7 +66,7 @@ public class ClientViewModel extends ViewModel {
             ClientDao.addClient(client, new EcouteurDeDonnees() {
                 @Override
                 public void onDataLoaded(Object data) {
-                    Client client = (Client)data;
+                    Client client = (Client) data;
 
                     modele.addClient(client);
                     clientLiveData.postValue(modele.getClients());
@@ -70,10 +77,33 @@ public class ClientViewModel extends ViewModel {
                     erreurLiveData.postValue(errorMessage);
                 }
             });
-    } catch (JSONException e) {
-        erreurLiveData.postValue("Problème dans le JSON des clients");
-    } catch (IOException e) {
-        erreurLiveData.postValue("Problème d'accès à l'API");
+        } catch (JSONException e) {
+            erreurLiveData.postValue("Problème dans le JSON des clients");
+        } catch (IOException e) {
+            erreurLiveData.postValue("Problème d'accès à l'API");
+        }
     }
+
+    public void trouverVoyages() {
+        try {
+            VoyageDao.getVoyages(null, null, null, null, new EcouteurDeDonnees() {
+                @Override
+                public void onDataLoaded(Object data) {
+                    List<Voyage> voyages = (List<Voyage>) data;
+                    modele.setVoyages(voyages);
+                    voyageLiveData.postValue(voyages);
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    erreurLiveData.postValue(errorMessage);
+                }
+            });
+        } catch (JSONException e) {
+            erreurLiveData.postValue("Problème dans le JSON des clients");
+        } catch (IOException e) {
+            erreurLiveData.postValue("Problème d'accès à l'API");
+        }
     }
+
 }
