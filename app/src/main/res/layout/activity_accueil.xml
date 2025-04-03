@@ -5,6 +5,130 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E4C814"
     tools:context=".vue.activity.AccueilActivity">
+
+    <ScrollView
+        android:id="@+id/voyagesListeView"
+        android:layout_width="260dp"
+        android:layout_height="500dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="73dp"
+        android:background="#3CEBB3"
+        android:contentDescription="images de voyage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/listeViewVoyages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="10dp" />
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/voyagesBarRecherche"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="35dp"
+        android:ems="10"
+        android:hint="Rechercher un voyage"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/backgroundFiltres"
+        android:layout_width="111dp"
+        android:layout_height="342dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="220dp"
+        android:background="#81CE35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="3dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="12dp"
+        android:background="#6F6B6B"
+        app:layout_constraintEnd_toStartOf="@+id/voyagesListeView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/texteType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="52dp"
+        android:text="Type de voyage:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destinationVoyage" />
+
+    <TextView
+        android:id="@+id/texteBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="224dp"
+        android:text="Budget:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/budgetVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:text="10$"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texteBudget" />
+
+    <TextView
+        android:id="@+id/texteDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="52dp"
+        android:text="Destination:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetVoyage" />
+
+    <TextView
+        android:id="@+id/destinationVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:text="Ton pere"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texteDestination" />
+
+    <TextView
+        android:id="@+id/typeVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:text="Aventure"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texteType" />
+
+    <Button
+        android:id="@+id/btnFiltres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#040404"
+        android:text="Filtres"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/typeVoyage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

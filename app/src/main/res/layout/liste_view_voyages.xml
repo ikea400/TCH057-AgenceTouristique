@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/detailImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="@+id/divider2"
+        app:layout_constraintTop_toTopOf="@+id/divider2"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/detailTitre"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Titre"
+        app:layout_constraintEnd_toEndOf="@+id/divider2"
+        app:layout_constraintStart_toEndOf="@+id/detailImage"
+        app:layout_constraintTop_toTopOf="@+id/divider2"
+        app:layout_wrapBehaviorInParent="included" />
+
+    <TextView
+        android:id="@+id/texteDetailDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Destination:"
+        app:layout_constraintStart_toEndOf="@+id/detailImage"
+        app:layout_constraintTop_toBottomOf="@+id/detailTitre" />
+
+    <TextView
+        android:id="@+id/detailDestination"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="ton pere"
+        app:layout_constraintStart_toStartOf="@+id/texteDetailDestination"
+        app:layout_constraintTop_toBottomOf="@+id/texteDetailDestination"
+        app:layout_wrapBehaviorInParent="included" />
+
+    <TextView
+        android:id="@+id/texteDetailPrix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Prix:"
+        app:layout_constraintStart_toStartOf="@+id/detailDescription"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage" />
+
+    <TextView
+        android:id="@+id/detailPrix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:text="10$"
+        app:layout_constraintStart_toEndOf="@+id/texteDetailPrix"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage" />
+
+    <TextView
+        android:id="@+id/detailDescription"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Description du voyage"
+        app:layout_constraintBottom_toBottomOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="@+id/divider2"
+        app:layout_constraintStart_toStartOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage"
+        app:layout_wrapBehaviorInParent="included" />
+</androidx.constraintlayout.widget.ConstraintLayout>
