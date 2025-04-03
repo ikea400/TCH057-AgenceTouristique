@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="price_range">
+        <item>200</item> <!-- Starting thumb position -->
+        <item>800</item> <!-- Ending thumb position -->
+    </array>
+</resources>

@@ -68,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                     finish();
                 } else {
                     afficherMessage("Courriel est déjà utilisé");
+                    client = null;
                 }
                 return;
             }
