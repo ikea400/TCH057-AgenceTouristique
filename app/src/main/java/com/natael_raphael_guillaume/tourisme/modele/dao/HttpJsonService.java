@@ -149,7 +149,7 @@ public class HttpJsonService {
                         List<Voyage> resultats = Arrays.asList(mapper.readValue(jsonStr, Voyage[].class));
                         chargeurDeDonnees.onDataLoaded(resultats);
                     } catch (JsonProcessingException e) {
-                        chargeurDeDonnees.onError("Problème du JSON dans les clients reçus: " + jsonStr);
+                        chargeurDeDonnees.onError("Problème du JSON dans les voyages reçus: " + e.toString());
                     }
                 }
             }

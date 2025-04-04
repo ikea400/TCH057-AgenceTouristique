@@ -16,14 +16,14 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.List;
 
-public class ClientViewModel extends ViewModel {
+public class DataViewModel extends ViewModel {
     private final MutableLiveData<List<Client>> clientLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Voyage>> voyageLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> erreurLiveData = new MutableLiveData<>();
 
     private final Modele modele;
 
-    public ClientViewModel() {
+    public DataViewModel() {
         this.modele = ModeleManager.getModele();
     }
 
@@ -84,9 +84,9 @@ public class ClientViewModel extends ViewModel {
         }
     }
 
-    public void trouverVoyages() {
+    public void trouverVoyages(String destination, int[] budget, String type, String dateDepart) {
         try {
-            VoyageDao.getVoyages(null, null, null, null, new EcouteurDeDonnees() {
+            VoyageDao.getVoyages(destination, budget, type, dateDepart, new EcouteurDeDonnees() {
                 @Override
                 public void onDataLoaded(Object data) {
                     List<Voyage> voyages = (List<Voyage>) data;

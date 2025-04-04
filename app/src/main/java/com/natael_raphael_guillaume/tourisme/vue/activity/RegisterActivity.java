@@ -1,6 +1,5 @@
 package com.natael_raphael_guillaume.tourisme.vue.activity;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.natael_raphael_guillaume.tourisme.R;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Client;
-import com.natael_raphael_guillaume.tourisme.viewModele.ClientViewModel;
+import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -31,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnDoRegister;
     private Button btnGoLogin;
 
-    private ClientViewModel clientViewModel;
+    private DataViewModel clientViewModel;
 
     private Client client;
 
@@ -59,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnGoLogin = findViewById(R.id.btnGoLogin);
 
         // Initialisation du ViewModel
-        clientViewModel = new ViewModelProvider(this).get(ClientViewModel.class);
+        clientViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         // Observer les LiveData
         clientViewModel.getClients().observe(this, clients -> {

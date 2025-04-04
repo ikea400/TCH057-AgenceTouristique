@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.natael_raphael_guillaume.tourisme.R;
-import com.natael_raphael_guillaume.tourisme.viewModele.ClientViewModel;
+import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText textLoginPassword;
     private TextView loginError;
 
-    private ClientViewModel clientViewModel;
+    private DataViewModel dataViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         loginError.setText("");
 
         // Initialisation du ViewModel
-        clientViewModel = new ViewModelProvider(this).get(ClientViewModel.class);
+        dataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         // Observer les LiveData
-        clientViewModel.getClients().observe(this, clients -> {
+        dataViewModel.getClients().observe(this, clients -> {
 
             if (clients.size() != 1) {
                 afficherMessage("Identifiants invalide");
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        clientViewModel.getErreur().observe(this, this::afficherMessage);
+        dataViewModel.getErreur().observe(this, this::afficherMessage);
 
         // Clic sur le bouton de connection
         btnLogin.setOnClickListener(v -> {
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             int r = checkSelfPermission("android.permission.INTERNET");
             if (r == PackageManager.PERMISSION_GRANTED) {
-                clientViewModel.trouverClient(email, mdp);
+                dataViewModel.trouverClient(email, mdp);
             } else {
                 afficherMessage("Accès Internet non permis !");
             }
@@ -90,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(intent);
         });
+
+        Intent intent = new Intent(this, AccueilActivity.class);
+
+        startActivity(intent);
     }
 
     public void afficherMessage(String message) {

@@ -5,13 +5,13 @@ import java.util.List;
 public class Voyage {
     public static class Trip {
         private String date;
-        private String nbPlacesDisponibles;
+        private String nb_places_disponibles;
 
         public Trip() {}
 
         public Trip(String date, String nbPlacesDisponibles) {
             this.date = date;
-            this.nbPlacesDisponibles = nbPlacesDisponibles;
+            this.nb_places_disponibles = nbPlacesDisponibles;
         }
 
         public String getDate() {
@@ -22,19 +22,19 @@ public class Voyage {
             this.date = date;
         }
 
-        public String getNbPlacesDisponibles() {
-            return nbPlacesDisponibles;
+        public String getNb_places_disponibles() {
+            return nb_places_disponibles;
         }
 
-        public void setNbPlacesDisponibles(String nbPlacesDisponibles) {
-            this.nbPlacesDisponibles = nbPlacesDisponibles;
+        public void setNb_places_disponibles(String nb_places_disponibles) {
+            this.nb_places_disponibles = nb_places_disponibles;
         }
     }
 
     List<Trip> trips;
-    String id, nom_voyage, description,  destination, imageUrl, typeDeVoyage, activitesIncluses;
+    String id, nom_voyage, description,  destination, image_url, type_de_voyage, activites_incluses;
     double prix;
-    int dureeJours;
+    int duree_jours;
 
     public Voyage() {}
 
@@ -78,28 +78,28 @@ public class Voyage {
         this.destination = destination;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
-    public String getTypeDeVoyage() {
-        return typeDeVoyage;
+    public String getType_de_voyage() {
+        return type_de_voyage;
     }
 
-    public void setTypeDeVoyage(String typeDeVoyage) {
-        this.typeDeVoyage = typeDeVoyage;
+    public void setType_de_voyage(String type_de_voyage) {
+        this.type_de_voyage = type_de_voyage;
     }
 
-    public String getActivitesIncluses() {
-        return activitesIncluses;
+    public String getActivites_incluses() {
+        return activites_incluses;
     }
 
-    public void setActivitesIncluses(String activitesIncluses) {
-        this.activitesIncluses = activitesIncluses;
+    public void setActivites_incluses(String activites_incluses) {
+        this.activites_incluses = activites_incluses;
     }
 
     public double getPrix() {
@@ -110,11 +110,11 @@ public class Voyage {
         this.prix = prix;
     }
 
-    public int getDureeJours() {
-        return dureeJours;
+    public int getDuree_jours() {
+        return duree_jours;
     }
 
-    public void setDureeJours(int dureeJours) {
-        this.dureeJours = dureeJours;
+    public void setDuree_jours(int duree_jours) {
+        this.duree_jours = duree_jours;
     }
 }
