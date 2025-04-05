@@ -2,6 +2,7 @@ package com.natael_raphael_guillaume.tourisme.vue.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.natael_raphael_guillaume.tourisme.R;
 
 public class AccueilActivity extends AppCompatActivity {
+    Button btnFiltres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,10 @@ public class AccueilActivity extends AppCompatActivity {
         });
 
         Intent intent = new Intent(this, FilterActivity.class);
-        startActivity(intent);
+
+        btnFiltres = findViewById(R.id.btnFiltres);
+        btnFiltres.setOnClickListener(e -> {
+            startActivity(intent);
+        });
     }
 }
