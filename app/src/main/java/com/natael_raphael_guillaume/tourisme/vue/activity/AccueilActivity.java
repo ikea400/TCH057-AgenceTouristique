@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.natael_raphael_guillaume.tourisme.R;
+import com.natael_raphael_guillaume.tourisme.adaptateur.VoyageAdapter;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 
@@ -31,6 +33,7 @@ public class AccueilActivity extends AppCompatActivity {
 
     private ArrayList<String> destinations;
     private ActivityResultLauncher<Intent> launcher;
+    private ListView lvVoyages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,8 @@ public class AccueilActivity extends AppCompatActivity {
 
         textView8 = findViewById(R.id.textView8);
         btnFiltres = findViewById(R.id.btnFiltres);
+        lvVoyages = findViewById(R.id.listeViewVoyages);
+
 
         // Initialisation du ViewModel
         dataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
@@ -63,6 +68,10 @@ public class AccueilActivity extends AppCompatActivity {
         dataViewModel.trouverVoyages(null, null, null, null);
 
         btnFiltres.setOnClickListener(this::onFiltreClicked);
+
+        /// fonctionne pas trop trop
+        //VoyageAdapter adapter = new VoyageAdapter(this, R.layout.liste_view_voyages, dataViewModel.getVoyages().getValue());
+        //lvVoyages.setAdapter(adapter);
     }
 
     public void afficherMessage(String message) {
