@@ -1,4 +1,4 @@
-package com.natael_raphael_guillaume.tourisme.adaptateur;
+package com.natael_raphael_guillaume.tourisme.vue.adaptateurs;
 
 import android.content.Context;
 import android.content.res.Resources;

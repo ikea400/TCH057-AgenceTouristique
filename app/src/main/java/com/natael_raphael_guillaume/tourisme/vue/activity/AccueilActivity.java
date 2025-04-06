@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.natael_raphael_guillaume.tourisme.R;
-import com.natael_raphael_guillaume.tourisme.adaptateur.VoyageAdapter;
+import com.natael_raphael_guillaume.tourisme.vue.adaptateurs.VoyageAdapter;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 
