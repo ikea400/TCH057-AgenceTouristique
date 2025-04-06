@@ -29,6 +29,7 @@ public class AccueilActivity extends AppCompatActivity {
 
     private TextView textView8;
     private Button btnFiltres;
+    private Button btnHistorique;
     private DataViewModel dataViewModel;
 
     private ArrayList<String> destinations;
@@ -50,6 +51,7 @@ public class AccueilActivity extends AppCompatActivity {
 
         textView8 = findViewById(R.id.textView8);
         btnFiltres = findViewById(R.id.btnFiltres);
+        btnHistorique = findViewById(R.id.btnHistorique);
         lvVoyages = findViewById(R.id.listeViewVoyages);
 
 
@@ -68,6 +70,7 @@ public class AccueilActivity extends AppCompatActivity {
         dataViewModel.trouverVoyages(null, null, null, null);
 
         btnFiltres.setOnClickListener(this::onFiltreClicked);
+        btnHistorique.setOnClickListener(this::onHistoryClicked);
 
         dataViewModel.getVoyages().observe(this, voyages -> {
             VoyageAdapter adapter = new VoyageAdapter(this, R.layout.liste_view_voyages, voyages);
@@ -86,6 +89,12 @@ public class AccueilActivity extends AppCompatActivity {
         intent.putStringArrayListExtra("DESTINATIONS", destinations);
 
         launcher.launch(intent);
+    }
+
+    public void onHistoryClicked(View view) {
+        Intent intent = new Intent(this, HistoryActivity.class);
+
+        startActivity(intent);
     }
 
     public void onFilterResult(ActivityResult result) {
