@@ -69,9 +69,10 @@ public class AccueilActivity extends AppCompatActivity {
 
         btnFiltres.setOnClickListener(this::onFiltreClicked);
 
-        /// fonctionne pas trop trop
-        //VoyageAdapter adapter = new VoyageAdapter(this, R.layout.liste_view_voyages, dataViewModel.getVoyages().getValue());
-        //lvVoyages.setAdapter(adapter);
+        dataViewModel.getVoyages().observe(this, voyages -> {
+            VoyageAdapter adapter = new VoyageAdapter(this, R.layout.liste_view_voyages, voyages);
+            lvVoyages.setAdapter(adapter);
+        });
     }
 
     public void afficherMessage(String message) {
