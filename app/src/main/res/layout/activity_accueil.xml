@@ -9,18 +9,26 @@
     tools:context=".vue.activity.AccueilActivity">
 
     <LinearLayout
-        android:layout_width="265dp"
-        android:layout_height="499dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="74dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="75dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/divider">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toEndOf="@+id/divider"
+        app:layout_constraintTop_toBottomOf="@+id/voyagesBarRecherche"
+        app:layout_constraintVertical_bias="0.278">
 
         <ListView
             android:id="@+id/listeViewVoyages"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="8dp" />
     </LinearLayout>
 
     <EditText
@@ -49,12 +57,13 @@
     <View
         android:id="@+id/divider"
         android:layout_width="3dp"
-        android:layout_height="500dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="156dp"
+        android:layout_marginBottom="75dp"
         android:background="#6F6B6B"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/backgroundFiltres"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"  android:layout_height="0dp"/>
 
     <TextView
         android:id="@+id/texteType"
