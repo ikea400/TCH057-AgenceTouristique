@@ -36,6 +36,11 @@ public class AccueilActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> launcher;
     private ListView lvVoyages;
 
+    private String destination;
+    private String type;
+    private String dateDepart;
+    private int[] budget;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +72,7 @@ public class AccueilActivity extends AppCompatActivity {
 
         dataViewModel.getErreur().observe(this, this::afficherMessage);
 
-        dataViewModel.trouverVoyages(null, null, null, null);
+        dataViewModel.trouverVoyages(destination, budget, type, dateDepart);
 
         btnFiltres.setOnClickListener(this::onFiltreClicked);
         btnHistorique.setOnClickListener(this::onHistoryClicked);
@@ -98,7 +103,16 @@ public class AccueilActivity extends AppCompatActivity {
     }
 
     public void onFilterResult(ActivityResult result) {
+        Intent resultIntent;
+        if (result.getResultCode() != RESULT_OK ||
+                (resultIntent = result.getData()) == null) return;
 
+        destination = resultIntent.getStringExtra("DESTINATION");
+        type = resultIntent.getStringExtra("TYPE");
+        dateDepart = resultIntent.getStringExtra("DATE");
+        budget = resultIntent.getIntArrayExtra("BUDGET");
+
+        dataViewModel.trouverVoyages(destination, budget, type, dateDepart);
     }
 
     public void updateDestinations(List<Voyage> voyages) {

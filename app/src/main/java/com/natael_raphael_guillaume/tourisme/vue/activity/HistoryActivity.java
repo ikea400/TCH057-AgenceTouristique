@@ -31,8 +31,19 @@ public class HistoryActivity extends AppCompatActivity {
         });
 
         lvHistorique = findViewById(R.id.lvHistorique);
-        try {
 
+        updateCursor();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        updateCursor();
+    }
+
+    private void updateCursor() {
+        try {
             //HistoriqueDao.addHistorique(this, "Québec, Québec", "2025-05-10", 250);
 
             Cursor cursor = HistoriqueDao.getHistoriqueCursor(this);
