@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         dataViewModel.getErreur().observe(this, this::afficherMessage);
 
-        // Clic sur le bouton de connection
+        // Click sur le bouton de connection
         btnLogin.setOnClickListener(v -> {
             String email = textLoginEmail.getText().toString().trim();
             String mdp = textLoginPassword.getText().toString().trim();
@@ -83,12 +83,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Clic sur le bouton d'enregistrement
+        // Click sur le bouton d'enregistrement
         btnLinkRegister.setOnClickListener(v -> {
             Intent intent = new Intent(this, RegisterActivity.class);
 
             startActivity(intent);
         });
+
+
+
+        /// BYPASSE LOGIN
+
+
+
 
         Intent intent = new Intent(this, AccueilActivity.class);
 
