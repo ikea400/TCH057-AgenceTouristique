@@ -137,39 +137,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Date de départ"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/divider4" />
-
     <CalendarView
-        android:id="@+id/calendarView3"
+        android:id="@+id/cvFilterDate"
         android:layout_width="330dp"
         android:layout_height="331dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/cbFilterDate"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnFilterConfirm"
         android:layout_width="157dp"
         android:layout_height="50dp"
         android:text="Confirmer"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView3" />
+        app:layout_constraintTop_toBottomOf="@+id/cvFilterDate" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnFilterCancel"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:text="Annuler"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView3" />
+        app:layout_constraintTop_toBottomOf="@+id/cvFilterDate" />
+
+    <CheckBox
+        android:id="@+id/cbFilterDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date de départ"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

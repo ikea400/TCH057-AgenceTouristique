@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 import okhttp3.Call;
@@ -147,9 +148,19 @@ public class HttpJsonService {
                     ObjectMapper mapper = new ObjectMapper();
                     try {
                         List<Voyage> resultats = Arrays.asList(mapper.readValue(jsonStr, Voyage[].class));
+
+                        if (dateDepart != null && !dateDepart.isEmpty() && !resultats.isEmpty()) {
+                            resultats = new ArrayList<>(resultats);
+                            resultats.removeIf(voyage ->
+                                    voyage.getTrips()
+                                            .stream()
+                                            .noneMatch(trip -> dateDepart.equals(trip.getDate()))
+                            );
+                        }
+
                         chargeurDeDonnees.onDataLoaded(resultats);
                     } catch (JsonProcessingException e) {
-                        chargeurDeDonnees.onError("Problème du JSON dans les voyages reçus: " + e.toString());
+                        chargeurDeDonnees.onError("Problème du JSON dans les voyages reçus: " + e);
                     }
                 }
             }
