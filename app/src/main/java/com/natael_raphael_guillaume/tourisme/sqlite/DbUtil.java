@@ -15,12 +15,11 @@ public class DbUtil extends SQLiteOpenHelper {
         String requeteCreation = String.format(
                 "CREATE TABLE '%s' (" +
                         "'%s' INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        "'%s' TEXT NOT NULL" +
+                        "'%s' TEXT NOT NULL," +
                         "'%s' TEXT NOT NULL," +
                         "'%s' REAL NOT NULL," +
                         "'%s' TEXT NOT NULL," +
-                        "'%s' TEXT NOT NULL," +
-                        "PRIMARY KEY('id' AUTOINCREMENT)" +
+                        "'%s' TEXT NOT NULL" +
                         ");",
                 VoyageHistorique.TABLE_NAME,
                 VoyageHistorique.Colonnes.ID,

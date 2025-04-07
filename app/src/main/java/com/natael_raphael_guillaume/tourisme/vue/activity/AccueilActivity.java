@@ -59,6 +59,13 @@ public class AccueilActivity extends AppCompatActivity {
         btnHistorique = findViewById(R.id.btnHistorique);
         lvVoyages = findViewById(R.id.listeViewVoyages);
 
+        lvVoyages.setOnItemClickListener((parent, view, position, id) -> {
+           Voyage voyage = (Voyage)parent.getItemAtPosition(position);
+            System.out.println(voyage);
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra("VOYAGE", voyage);
+            startActivity(intent);
+        });
 
         // Initialisation du ViewModel
         dataViewModel = new ViewModelProvider(this).get(DataViewModel.class);

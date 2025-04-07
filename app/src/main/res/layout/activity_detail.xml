@@ -30,10 +30,12 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="-20dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintBottom_toBottomOf="@+id/DescriptionDetailVoyage"
+                app:layout_constraintBottom_toBottomOf="@+id/lblDescriptionDetailVoyage"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
                 android:id="@+id/ImageDetailVoyage"
@@ -57,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ImageDetailVoyage" />
 
             <TextView
-                android:id="@+id/PrixDetailVoyage"
+                android:id="@+id/lblPrixDetailVoyage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
@@ -67,14 +69,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/TitreDetailVoyage" />
 
             <TextView
-                android:id="@+id/TexteDestinationDetailVoyage"
+                android:id="@+id/lblTexteDestinationDetailVoyage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="30dp"
                 android:text="Destination:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PrixDetailVoyage" />
+                app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
 
             <TextView
                 android:id="@+id/TexteDureeDetailVoyage"
@@ -84,10 +86,10 @@
                 android:layout_marginTop="25dp"
                 android:text="Duree:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TexteDestinationDetailVoyage" />
+                app:layout_constraintTop_toBottomOf="@+id/lblTexteDestinationDetailVoyage" />
 
             <TextView
-                android:id="@+id/DescriptionDetailVoyage"
+                android:id="@+id/lblDescriptionDetailVoyage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
@@ -101,24 +103,32 @@
                 app:layout_wrapBehaviorInParent="included" />
 
             <TextView
-                android:id="@+id/DestinationDetailVoyage"
+                android:id="@+id/lblDestinationDetailVoyage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
                 android:layout_marginTop="30dp"
                 android:text="Shangai"
-                app:layout_constraintStart_toEndOf="@+id/TexteDestinationDetailVoyage"
-                app:layout_constraintTop_toBottomOf="@+id/PrixDetailVoyage" />
+                app:layout_constraintStart_toEndOf="@+id/lblTexteDestinationDetailVoyage"
+                app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
 
             <TextView
-                android:id="@+id/DureeDetailVoyage"
+                android:id="@+id/lblDureeDetailVoyage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="113dp"
                 android:layout_marginTop="26dp"
                 android:text="15h"
                 app:layout_constraintStart_toEndOf="@+id/TexteDureeDetailVoyage"
-                app:layout_constraintTop_toBottomOf="@+id/DestinationDetailVoyage" />
+                app:layout_constraintTop_toBottomOf="@+id/lblDestinationDetailVoyage" />
+
+            <Spinner
+                android:id="@+id/spDetailDates"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/BackgroundDetailVoyage"
+                app:layout_constraintStart_toStartOf="@+id/lblDescriptionDetailVoyage"
+                app:layout_constraintTop_toBottomOf="@+id/lblDescriptionDetailVoyage" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

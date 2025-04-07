@@ -1,9 +1,10 @@
 package com.natael_raphael_guillaume.tourisme.modele.entite;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Voyage {
-    public static class Trip {
+public class Voyage implements Serializable {
+    public static class Trip implements Serializable {
         private String date;
         private String nb_places_disponibles;
 
