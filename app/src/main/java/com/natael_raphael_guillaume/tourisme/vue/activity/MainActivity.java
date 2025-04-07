@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, AccueilActivity.class);
 
-        startActivity(intent);
+        //startActivity(intent);
     }
 
     public void afficherMessage(String message) {

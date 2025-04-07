@@ -2,6 +2,7 @@ package com.natael_raphael_guillaume.tourisme.vue.activity;
 
 import static android.widget.CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,16 +15,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.natael_raphael_guillaume.tourisme.R;
 import com.natael_raphael_guillaume.tourisme.modele.dao.HistoriqueDao;
 import com.natael_raphael_guillaume.tourisme.sqlite.VoyageHistorique;
+import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 import com.natael_raphael_guillaume.tourisme.vue.adaptateurs.HistoriqueAdapteur;
 
 public class HistoryActivity extends AppCompatActivity {
 
     private ListView lvHistorique;
+    private DataViewModel dataViewModel;
 
+    private String historiqueId;
+
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +52,29 @@ public class HistoryActivity extends AppCompatActivity {
             builder.setMessage("Êtes-vous sûr de vouloir annuler votre réservation ? Cette action est irréversible.");
 
             builder.setPositiveButton("Oui", (dialog, which) -> {
-                Cursor cursor = (Cursor)parent.getItemAtPosition(position);
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
-                @IntRange(from = -1) int idIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.VOYAGE_ID);
+                @IntRange(from = -1) int idIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.ID);
                 System.out.println(idIndex);
 
-                if (idIndex >= 0) {
-                    System.out.println(cursor.getString(idIndex));
+                @IntRange(from = -1) int voyageIdIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.VOYAGE_ID);
+                System.out.println(voyageIdIndex);
+
+                @IntRange(from = -1) int dateIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.DATE);
+                System.out.println(dateIndex);
+
+
+                @IntRange(from = -1) int statutIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.STATUT);
+                System.out.println(statutIndex);
+
+                if (statutIndex >= 0 && idIndex >= 0 && voyageIdIndex >= 0 && dateIndex >= 0) {
+                    @SuppressLint("Range") String statut = cursor.getString(statutIndex);
+                    if (!statut.equalsIgnoreCase(HistoriqueDao.CONFIRMEE)) return;
+
+                    historiqueId = cursor.getString(idIndex);
+
+                    System.out.println(cursor.getString(dateIndex));
+                    dataViewModel.annulerVoyage(cursor.getString(voyageIdIndex), cursor.getString(dateIndex));
                 }
             });
 
@@ -65,6 +88,17 @@ public class HistoryActivity extends AppCompatActivity {
         });
 
         updateCursor();
+
+        dataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
+
+        // Observer les LiveData
+        dataViewModel.getVoyages().observe(this, voyages -> {
+            System.out.println(voyages);
+            HistoriqueDao.cancelHistorique(this, historiqueId);
+            updateCursor();
+        });
+
+        dataViewModel.getErreur().observe(this, this::afficherMessage);
     }
 
     @Override
@@ -76,15 +110,18 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void updateCursor() {
         try {
-            //HistoriqueDao.addHistorique(this, "Québec, Québec", "2025-05-10", 250);
-
             Cursor cursor = HistoriqueDao.getHistoriqueCursor(this);
 
-            HistoriqueAdapteur adapter = new HistoriqueAdapteur(this, cursor,FLAG_REGISTER_CONTENT_OBSERVER );
+            HistoriqueAdapteur adapter = new HistoriqueAdapteur(this, cursor, FLAG_REGISTER_CONTENT_OBSERVER);
 
             lvHistorique.setAdapter(adapter);
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void afficherMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        System.out.println(message);
     }
 }

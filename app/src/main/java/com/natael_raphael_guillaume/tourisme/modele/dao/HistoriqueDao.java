@@ -13,6 +13,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class HistoriqueDao {
+    public static final String CONFIRMEE = "confirmée";
+    public static final String ANNULEE = "annulé";
+
     public static Cursor getHistoriqueCursor(Context context) {
         String[] colonnesDesirees = new String[]{
                 VoyageHistorique.Colonnes.ID,
@@ -42,9 +45,22 @@ public class HistoriqueDao {
         donnees.put(VoyageHistorique.Colonnes.DESTINATION, destination);
         donnees.put(VoyageHistorique.Colonnes.DATE, date);
         donnees.put(VoyageHistorique.Colonnes.PRIX, prix);
-        donnees.put(VoyageHistorique.Colonnes.STATUT, "confirmée");
+        donnees.put(VoyageHistorique.Colonnes.STATUT, CONFIRMEE);
 
         db.insert(VoyageHistorique.TABLE_NAME, null, donnees);
+        dbUtil.close();
+    }
+
+    public static void cancelHistorique(Context context, String id) {
+        DbUtil dbUtil = new DbUtil(context);
+        SQLiteDatabase db = dbUtil.getWritableDatabase();
+
+        ContentValues donnees = new ContentValues();
+
+        donnees.put(VoyageHistorique.Colonnes.STATUT, ANNULEE);
+
+        db.update(VoyageHistorique.TABLE_NAME, donnees, VoyageHistorique.Colonnes.ID + " = ?", new String[]{id});
+
         dbUtil.close();
     }
 

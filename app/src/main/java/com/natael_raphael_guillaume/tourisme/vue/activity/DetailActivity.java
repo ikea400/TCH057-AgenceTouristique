@@ -97,7 +97,7 @@ public class DetailActivity extends AppCompatActivity {
     public void onReserverClicked(View view) {
         trip = voyage.getTrips().get(spDetailDates.getSelectedItemPosition());
         if (trip.getNb_places_disponibles() > 0) {
-            dataViewModel.reserverVoyage(voyage.getId(), voyage.getDestination(), trip.getDate());
+            dataViewModel.reserverVoyage(voyage.getId(), trip.getDate());
         }
     }
 
