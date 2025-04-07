@@ -7,15 +7,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.natael_raphael_guillaume.tourisme.R;
+import com.natael_raphael_guillaume.tourisme.modele.dao.HistoriqueDao;
+import com.natael_raphael_guillaume.tourisme.modele.dao.VoyageDao;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
+import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
+import com.natael_raphael_guillaume.tourisme.viewModele.EcouteurDeDonnees;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +33,10 @@ public class DetailActivity extends AppCompatActivity {
     private TextView lblDescriptionDetailVoyage;
     private Spinner spDetailDates;
     private Button btnDetailReserver;
+
+    private Voyage voyage;
+    private DataViewModel dataViewModel;
+    private Voyage.Trip trip;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +57,7 @@ public class DetailActivity extends AppCompatActivity {
         btnDetailReserver = findViewById(R.id.btnDetailReserver);
 
         Intent intent = getIntent();
-        Voyage voyage = (Voyage)intent.getSerializableExtra("VOYAGE");
+        voyage = (Voyage) intent.getSerializableExtra("VOYAGE");
         if (voyage == null) {
             finish();
             return;
@@ -66,6 +76,16 @@ public class DetailActivity extends AppCompatActivity {
         ArrayAdapter<String> adapteur = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, trips);
         spDetailDates.setAdapter(adapteur);
+
+        dataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
+
+        // Observer les LiveData
+        dataViewModel.getVoyages().observe(this, voyages -> {
+            HistoriqueDao.addHistorique(this, voyage.getId(), voyage.getDestination(), trip.getDate(), voyage.getPrix());
+            finish();
+        });
+
+        dataViewModel.getErreur().observe(this, this::afficherMessage);
     }
 
     public static String formatTrip(Voyage.Trip trip) {
@@ -75,7 +95,15 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void onReserverClicked(View view) {
+        trip = voyage.getTrips().get(spDetailDates.getSelectedItemPosition());
+        if (trip.getNb_places_disponibles() > 0) {
+            dataViewModel.reserverVoyage(voyage.getId(), voyage.getDestination(), trip.getDate());
+        }
+    }
 
+    public void afficherMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        System.out.println(message);
     }
 
 }

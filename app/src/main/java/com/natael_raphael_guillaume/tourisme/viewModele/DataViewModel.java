@@ -106,4 +106,34 @@ public class DataViewModel extends ViewModel {
         }
     }
 
+    public void reserverVoyage(String id, String destination, String dateDepart) {
+        try {
+            VoyageDao.reserverVoyages(destination, id, dateDepart, new EcouteurDeDonnees() {
+                @Override
+                public void onDataLoaded(Object data) {
+                    Voyage voyage = (Voyage) data;
+
+                    List<Voyage> voyages = modele.getVoyages();
+
+                    for (int i = 0; i < voyages.size(); i++) {
+                        if (voyages.get(i).getId().equals(voyage.getId())) {
+                            voyages.set(i, voyage);
+                        }
+                    }
+
+                    modele.setVoyages(voyages);
+                    voyageLiveData.postValue(voyages);
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    erreurLiveData.postValue(errorMessage);
+                }
+            });
+        } catch (JSONException e) {
+            erreurLiveData.postValue("Problème dans le JSON des clients");
+        } catch (IOException e) {
+            erreurLiveData.postValue("Problème d'accès à l'API");
+        }
+    }
 }

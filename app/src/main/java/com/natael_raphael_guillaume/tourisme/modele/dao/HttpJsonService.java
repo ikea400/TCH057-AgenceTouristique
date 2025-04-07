@@ -8,6 +8,10 @@ import com.natael_raphael_guillaume.tourisme.modele.entite.Client;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 import com.natael_raphael_guillaume.tourisme.viewModele.EcouteurDeDonnees;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -173,6 +177,103 @@ public class HttpJsonService {
         });
     }
 
+    public static void modifierVoyagePlaces(String id, String date, int placesDelta, EcouteurDeDonnees ecouteurDeDonnees) {
+        getVoyagePlaces(id, date, new EcouteurDeDonnees() {
+            @Override
+            public void onDataLoaded(Object data) {
+                List<Voyage.Trip> trips = (List<Voyage.Trip>) data;
+                for (Voyage.Trip trip : trips) {
+                    if (trip.getDate().equals(date)) {
+                        trip.setNb_places_disponibles(trip.getNb_places_disponibles() + placesDelta);
+                    }
+                }
+
+                setVoyagePlaces(id, date, trips, ecouteurDeDonnees);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                ecouteurDeDonnees.onError(errorMessage);
+            }
+        });
+    }
+
+    private static void getVoyagePlaces(String id, String date, EcouteurDeDonnees ecouteurDeDonnees) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(URL_POINT_ENTREE + "/voyages/" + id)
+                .build();
+        System.out.println(URL_POINT_ENTREE + "/voyages/" + id);
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                ecouteurDeDonnees.onError("Problème de communication avec le server");
+                call.cancel();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                assert response.body() != null;
+                final String jsonStr = response.body().string();
+                //Traitement de la réponse ici
+                if (!jsonStr.isEmpty()) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    try {
+                        List<Voyage.Trip> resultats = mapper.readValue(jsonStr, Voyage.class).getTrips();
+
+                        ecouteurDeDonnees.onDataLoaded(resultats);
+                    } catch (JsonProcessingException e) {
+                        ecouteurDeDonnees.onError("Problème du JSON dans le voyage reçus du get: " + jsonStr);
+                    }
+                }
+            }
+        });
+    }
+
+    private static void setVoyagePlaces(String id, String date, List<Voyage.Trip> trips, EcouteurDeDonnees ecouteurDeDonnees) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        ObjectMapper mapper = new ObjectMapper();
+
+        RequestBody body;
+        try {
+            JSONObject object = new JSONObject();
+            // Serialize trips into a JSON array
+            String tripsJson = mapper.writeValueAsString(trips);
+            object.put("trips", new JSONArray(tripsJson));
+            body = RequestBody.create(object.toString(), JSON);
+        } catch (JsonProcessingException | JSONException e) {
+            ecouteurDeDonnees.onError("Problème du JSON dans les trips reçus");
+            return;
+        }
+
+        Request request = new Request.Builder()
+                .url(URL_POINT_ENTREE + "/voyages/" + id)
+                .patch(body)
+                .build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                ecouteurDeDonnees.onError("Problème de communication avec le server");
+                call.cancel();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                assert response.body() != null;
+
+                final String jsonStr = response.body().string();
+                try {
+                    Voyage resultats = mapper.readValue(jsonStr, Voyage.class);
+                    ecouteurDeDonnees.onDataLoaded(resultats);
+                } catch (JsonProcessingException e) {
+                    ecouteurDeDonnees.onError("Problème du JSON dans le voyage reçus: " + jsonStr);
+                }
+            }
+        });
+    }
+
     public static void reserverVoyage(String id, String date, EcouteurDeDonnees ecouteurDeDonnees) {
         OkHttpClient okHttpClient = new OkHttpClient();
 
@@ -199,8 +300,7 @@ public class HttpJsonService {
 
                         for (Voyage.Trip trip : resultats) {
                             if (trip.getDate().equals(date)) {
-                                trip.setNb_places_disponibles(Integer.toString(
-                                        Integer.parseInt(trip.getNb_places_disponibles()) - 1));
+                                trip.setNb_places_disponibles(trip.getNb_places_disponibles() - 1);
                             }
                         }
 
@@ -228,7 +328,7 @@ public class HttpJsonService {
                         });
 
                     } catch (JsonProcessingException e) {
-                        ecouteurDeDonnees.onError("Problème du JSON dans les clients reçus: " + jsonStr);
+                        ecouteurDeDonnees.onError("Problème du JSON dans les trips reçus: " + jsonStr);
                     }
                 }
             }

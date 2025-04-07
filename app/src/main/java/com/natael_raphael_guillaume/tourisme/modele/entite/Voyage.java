@@ -6,11 +6,11 @@ import java.util.List;
 public class Voyage implements Serializable {
     public static class Trip implements Serializable {
         private String date;
-        private String nb_places_disponibles;
+        private int nb_places_disponibles;
 
         public Trip() {}
 
-        public Trip(String date, String nbPlacesDisponibles) {
+        public Trip(String date, int nbPlacesDisponibles) {
             this.date = date;
             this.nb_places_disponibles = nbPlacesDisponibles;
         }
@@ -23,11 +23,11 @@ public class Voyage implements Serializable {
             this.date = date;
         }
 
-        public String getNb_places_disponibles() {
+        public int getNb_places_disponibles() {
             return nb_places_disponibles;
         }
 
-        public void setNb_places_disponibles(String nb_places_disponibles) {
+        public void setNb_places_disponibles(int nb_places_disponibles) {
             this.nb_places_disponibles = nb_places_disponibles;
         }
     }
