@@ -2,7 +2,9 @@ package com.natael_raphael_guillaume.tourisme.vue.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,6 +26,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView lblDureeDetailVoyage;
     private TextView lblDescriptionDetailVoyage;
     private Spinner spDetailDates;
+    private Button btnDetailReserver;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
         lblDureeDetailVoyage = findViewById(R.id.lblDureeDetailVoyage);
         lblDescriptionDetailVoyage = findViewById(R.id.lblDescriptionDetailVoyage);
         spDetailDates = findViewById(R.id.spDetailDates);
+        btnDetailReserver = findViewById(R.id.btnDetailReserver);
 
         Intent intent = getIntent();
         Voyage voyage = (Voyage)intent.getSerializableExtra("VOYAGE");
@@ -52,16 +57,25 @@ public class DetailActivity extends AppCompatActivity {
         lblDestinationDetailVoyage.setText(voyage.getDestination());
         lblDureeDetailVoyage.setText(voyage.getDuree_jours() + " jours");
         lblDescriptionDetailVoyage.setText(voyage.getDescription());
+        btnDetailReserver.setOnClickListener(this::onReserverClicked);
 
         List<String> trips = voyage.getTrips().stream()
-                .map(trip ->
-                        String.format("%s %s places restantes",
-                                trip.getDate(),
-                                trip.getNb_places_disponibles()))
+                .map(DetailActivity::formatTrip)
                 .collect(Collectors.toList());
 
         ArrayAdapter<String> adapteur = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, trips);
         spDetailDates.setAdapter(adapteur);
     }
+
+    public static String formatTrip(Voyage.Trip trip) {
+        return String.format("%s %s places restantes",
+                trip.getDate(),
+                trip.getNb_places_disponibles());
+    }
+
+    public void onReserverClicked(View view) {
+
+    }
+
 }
