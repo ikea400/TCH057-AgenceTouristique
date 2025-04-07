@@ -15,6 +15,7 @@ public class DbUtil extends SQLiteOpenHelper {
         String requeteCreation = String.format(
                 "CREATE TABLE '%s' (" +
                         "'%s' INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "'%s' TEXT NOT NULL" +
                         "'%s' TEXT NOT NULL," +
                         "'%s' REAL NOT NULL," +
                         "'%s' TEXT NOT NULL," +
@@ -23,6 +24,7 @@ public class DbUtil extends SQLiteOpenHelper {
                         ");",
                 VoyageHistorique.TABLE_NAME,
                 VoyageHistorique.Colonnes.ID,
+                VoyageHistorique.Colonnes.VOYAGE_ID,
                 VoyageHistorique.Colonnes.DESTINATION,
                 VoyageHistorique.Colonnes.PRIX,
                 VoyageHistorique.Colonnes.STATUT,
@@ -33,12 +35,9 @@ public class DbUtil extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String requeteModification = String.format(
-                "ALTER TABLE %s " +
-                        "RENAME COLUMN " +
-                        "%s " +
-                        "TO " +
-                        "%s;",
-                VoyageHistorique.TABLE_NAME, "id", VoyageHistorique.Colonnes.ID);
+                "ALTER TABLE %s ADD COLUMN %s TEXT NOT NULL DEFAULT '';",
+                VoyageHistorique.TABLE_NAME,
+                VoyageHistorique.Colonnes.VOYAGE_ID);
         db.execSQL(requeteModification);
     }
 }

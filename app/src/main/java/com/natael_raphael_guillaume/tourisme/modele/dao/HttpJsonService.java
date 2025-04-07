@@ -172,4 +172,66 @@ public class HttpJsonService {
             }
         });
     }
+
+    public static void reserverVoyage(String id, String date, EcouteurDeDonnees ecouteurDeDonnees) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(URL_POINT_ENTREE + "/voyages/" + id)
+                .build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                ecouteurDeDonnees.onError("Problème de communication avec le server");
+                call.cancel();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                assert response.body() != null;
+                final String jsonStr = response.body().string();
+                //Traitement de la réponse ici
+                if (!jsonStr.isEmpty()) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    try {
+                        List<Voyage.Trip> resultats = Arrays.asList(mapper.readValue(jsonStr, Voyage.Trip[].class));
+
+                        for (Voyage.Trip trip : resultats) {
+                            if (trip.getDate().equals(date)) {
+                                trip.setNb_places_disponibles(Integer.toString(
+                                        Integer.parseInt(trip.getNb_places_disponibles()) - 1));
+                            }
+                        }
+
+                        RequestBody body = RequestBody.create(mapper.writeValueAsString(resultats), JSON);
+                        Request request2 = new Request.Builder()
+                                .url(URL_POINT_ENTREE + "/voyages/" + id)
+                                .post(body)
+                                .build();
+
+                        okHttpClient.newCall(request2).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                                ecouteurDeDonnees.onError("Problème de communication avec le server");
+                                call.cancel();
+                            }
+
+                            @Override
+                            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                                assert response.body() != null;
+                                final String jsonStr2 = response.body().string();
+
+                                Voyage resultats2 = mapper.readValue(jsonStr2, Voyage.class);
+                                ecouteurDeDonnees.onDataLoaded(resultats2);
+                            }
+                        });
+
+                    } catch (JsonProcessingException e) {
+                        ecouteurDeDonnees.onError("Problème du JSON dans les clients reçus: " + jsonStr);
+                    }
+                }
+            }
+        });
+    }
 }

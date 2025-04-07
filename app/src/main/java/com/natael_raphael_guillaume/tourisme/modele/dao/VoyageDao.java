@@ -12,4 +12,7 @@ public class VoyageDao {
         HttpJsonService.getVoyages(destination, budget, type, dateDepart, chargeurDeDonnees);
     }
 
+    public static void reserverVoyages(String destination, String id, String dateDepart, EcouteurDeDonnees ecouteurDeDonnees) {
+
+    }
 }

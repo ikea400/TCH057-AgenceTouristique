@@ -16,6 +16,7 @@ public class HistoriqueDao {
     public static Cursor getHistoriqueCursor(Context context) {
         String[] colonnesDesirees = new String[]{
                 VoyageHistorique.Colonnes.ID,
+                VoyageHistorique.Colonnes.VOYAGE_ID,
                 VoyageHistorique.Colonnes.DESTINATION,
                 VoyageHistorique.Colonnes.DATE,
                 VoyageHistorique.Colonnes.PRIX,
@@ -31,12 +32,13 @@ public class HistoriqueDao {
         return curseur;
     }
 
-    public static void addHistorique(Context context, String destination, String date, double prix) {
+    public static void addHistorique(Context context, String id, String destination, String date, double prix) {
         DbUtil dbUtil = new DbUtil(context);
         SQLiteDatabase db = dbUtil.getWritableDatabase();
 
         ContentValues donnees = new ContentValues();
 
+        donnees.put(VoyageHistorique.Colonnes.VOYAGE_ID, id);
         donnees.put(VoyageHistorique.Colonnes.DESTINATION, destination);
         donnees.put(VoyageHistorique.Colonnes.DATE, date);
         donnees.put(VoyageHistorique.Colonnes.PRIX, prix);
