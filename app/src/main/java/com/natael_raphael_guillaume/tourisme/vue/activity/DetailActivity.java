@@ -25,6 +25,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.natael_raphael_guillaume.tourisme.R;
 import com.natael_raphael_guillaume.tourisme.modele.dao.HistoriqueDao;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
@@ -109,7 +111,11 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        getImageFromWeb(imageDetailVoyage);
+        Glide.with(this)
+                .load(voyage.getImage_url())
+                .apply(new RequestOptions().placeholder(R.drawable.ic_launcher_foreground))//this line optional - you can skip this line
+                .into(imageDetailVoyage);
+        //getImageFromWeb(imageDetailVoyage);
 
         List<String> trips = voyage.getTrips().stream().map(DetailActivity::formatTrip).collect(Collectors.toList());
 
