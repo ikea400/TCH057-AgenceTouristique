@@ -6,6 +6,9 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import com.natael_raphael_guillaume.tourisme.vue.adaptateurs.HistoriqueAdapteur;
 public class HistoryActivity extends AppCompatActivity {
 
     private ListView lvHistorique;
+    private Button btnHistoryRetour;
     private DataViewModel dataViewModel;
 
     private String historiqueId;
@@ -43,47 +47,11 @@ public class HistoryActivity extends AppCompatActivity {
         });
 
         lvHistorique = findViewById(R.id.lvHistorique);
+        btnHistoryRetour = findViewById(R.id.btnHistoryRetour);
 
-        lvHistorique.setOnItemClickListener((parent, view, position, id) -> {
+        btnHistoryRetour.setOnClickListener(v -> finish());
 
-            Cursor cursor = (Cursor) parent.getItemAtPosition(position);
-
-            @IntRange(from = -1) int statutIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.STATUT);
-            @IntRange(from = -1) int dateIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.DATE);
-
-            if (dateIndex < 0 || statutIndex < 0 || !cursor.getString(statutIndex).equals(HistoriqueDao.CONFIRMEE)) {
-                return;
-            }
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder.setTitle("Annuler la réservation");
-            builder.setMessage("Êtes-vous sûr de vouloir annuler votre réservation ? Cette action est irréversible.");
-
-            builder.setPositiveButton("Oui", (dialog, which) -> {
-
-                @IntRange(from = -1) int idIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.ID);
-                @IntRange(from = -1) int voyageIdIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.VOYAGE_ID);
-                @IntRange(from = -1) int prixIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.PRIX);
-
-                if (idIndex >= 0 && voyageIdIndex >= 0 && prixIndex >= 0) {
-                    historiqueId = cursor.getString(idIndex);
-
-                    // TODO
-                    //int nbPersonnes = cursor.getDouble(prixIndex)
-
-                    dataViewModel.annulerVoyage(cursor.getString(voyageIdIndex), cursor.getString(dateIndex), 1);
-                }
-            });
-
-            builder.setNegativeButton("Non", (dialog, which) -> {
-                System.out.println("NON");
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
-        });
+        lvHistorique.setOnItemClickListener(this::onItemClick);
 
         updateCursor();
 
@@ -121,5 +89,44 @@ public class HistoryActivity extends AppCompatActivity {
     public void afficherMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         System.out.println(message);
+    }
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+
+        int statutIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.STATUT);
+        int dateIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.DATE);
+
+        if (dateIndex < 0 || statutIndex < 0 || !cursor.getString(statutIndex).equals(HistoriqueDao.CONFIRMEE)) {
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Annuler la réservation");
+        builder.setMessage("Êtes-vous sûr de vouloir annuler votre réservation ? Cette action est irréversible.");
+
+        builder.setPositiveButton("Oui", (dialog, which) -> {
+
+            int idIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.ID);
+            int voyageIdIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.VOYAGE_ID);
+            int prixIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.PRIX);
+            int nbPersonnesIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.NB_PERSONNES);
+
+            if (idIndex >= 0 && voyageIdIndex >= 0 && prixIndex >= 0 && nbPersonnesIndex >= 0) {
+                historiqueId = cursor.getString(idIndex);
+
+                int nbPersonnes = cursor.getInt(nbPersonnesIndex);
+
+                dataViewModel.annulerVoyage(cursor.getString(voyageIdIndex), cursor.getString(dateIndex), nbPersonnes);
+            }
+        });
+
+        builder.setNegativeButton("Non", (dialog, which) -> {
+            System.out.println("NON");
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
