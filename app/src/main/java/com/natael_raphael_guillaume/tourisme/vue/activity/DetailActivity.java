@@ -122,7 +122,7 @@ public class DetailActivity extends AppCompatActivity {
 
         // Observer les LiveData
         dataViewModel.getVoyages().observe(this, voyages -> {
-            HistoriqueDao.addHistorique(this, voyage.getId(), voyage.getDestination(), trip.getDate(), voyage.getPrix() * nbPersonnes);
+            HistoriqueDao.addHistorique(this, voyage.getId(), voyage.getDestination(), trip.getDate(), voyage.getPrix() * nbPersonnes, nbPersonnes);
             finish();
         });
 

@@ -65,14 +65,14 @@ public class HistoryActivity extends AppCompatActivity {
                 @IntRange(from = -1) int idIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.ID);
                 @IntRange(from = -1) int voyageIdIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.VOYAGE_ID);
                 @IntRange(from = -1) int prixIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.PRIX);
+                @IntRange(from = -1) int nbPersonnesIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.NB_PERSONNES);
 
-                if (idIndex >= 0 && voyageIdIndex >= 0 && prixIndex >= 0) {
+                if (idIndex >= 0 && voyageIdIndex >= 0 && prixIndex >= 0 && nbPersonnesIndex >= 0) {
                     historiqueId = cursor.getString(idIndex);
 
-                    // TODO
-                    //int nbPersonnes = cursor.getDouble(prixIndex)
+                    int nbPersonnes = cursor.getInt(nbPersonnesIndex);
 
-                    dataViewModel.annulerVoyage(cursor.getString(voyageIdIndex), cursor.getString(dateIndex), 1);
+                    dataViewModel.annulerVoyage(cursor.getString(voyageIdIndex), cursor.getString(dateIndex), nbPersonnes);
                 }
             });
 

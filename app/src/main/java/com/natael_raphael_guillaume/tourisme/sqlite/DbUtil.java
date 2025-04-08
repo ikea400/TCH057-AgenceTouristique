@@ -19,7 +19,8 @@ public class DbUtil extends SQLiteOpenHelper {
                         "'%s' TEXT NOT NULL," +
                         "'%s' REAL NOT NULL," +
                         "'%s' TEXT NOT NULL," +
-                        "'%s' TEXT NOT NULL" +
+                        "'%s' TEXT NOT NULL," +
+                        "'%s' INTEGER NOT NULL" +
                         ");",
                 VoyageHistorique.TABLE_NAME,
                 VoyageHistorique.Colonnes.ID,
@@ -27,16 +28,17 @@ public class DbUtil extends SQLiteOpenHelper {
                 VoyageHistorique.Colonnes.DESTINATION,
                 VoyageHistorique.Colonnes.PRIX,
                 VoyageHistorique.Colonnes.STATUT,
-                VoyageHistorique.Colonnes.DATE);
+                VoyageHistorique.Colonnes.DATE,
+                VoyageHistorique.Colonnes.NB_PERSONNES);
         db.execSQL(requeteCreation);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String requeteModification = String.format(
-                "ALTER TABLE %s ADD COLUMN %s TEXT NOT NULL DEFAULT '';",
+                "ALTER TABLE %s ADD COLUMN '%s' INTEGER NOT NULL DEFAULT 1;",
                 VoyageHistorique.TABLE_NAME,
-                VoyageHistorique.Colonnes.VOYAGE_ID);
+                VoyageHistorique.Colonnes.NB_PERSONNES);
         db.execSQL(requeteModification);
     }
 }
