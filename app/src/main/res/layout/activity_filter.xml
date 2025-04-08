@@ -26,16 +26,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="42dp" />
+        app:layout_constraintGuide_begin="1dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/filtres"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
@@ -43,6 +45,7 @@
         android:id="@+id/budgetRange"
         android:layout_width="325dp"
         android:layout_height="45dp"
+        android:contentDescription="@string/prix"
         android:stepSize="50"
         android:valueFrom="0"
         android:valueTo="1000"
@@ -51,7 +54,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:thumbColor="@color/black"
         app:trackColorActive="@color/black"
-        app:values="@array/price_range" />
+        app:values="@array/price_range"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/textView4"
@@ -85,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Destination"
+        android:text="@string/destination"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -95,6 +99,7 @@
         android:layout_height="48dp"
         android:completionThreshold="1"
         android:hint="@string/entrez_votre_destination"
+        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -173,7 +178,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:buttonTint="#4FC4CF"
-        android:text="Date de départ"
+        android:text="@string/date_de_d_part"
         app:buttonIconTint="#181818"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
