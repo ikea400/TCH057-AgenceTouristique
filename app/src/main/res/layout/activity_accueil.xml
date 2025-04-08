@@ -29,7 +29,7 @@
     <View
         android:id="@+id/backgroundFiltres"
         android:layout_width="372dp"
-        android:layout_height="102dp"
+        android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/container_border"
@@ -48,10 +48,10 @@
 
     <Button
         android:id="@+id/btnFiltres"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="36dp"
+        android:layout_width="89dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="#FBDD74"
         android:text="@string/filtres"
         android:textColor="#181818"
@@ -93,11 +93,11 @@
         android:id="@+id/typeVoyage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="28dp"
         android:text="@string/aucun_filtre"
         app:layout_constraintBottom_toBottomOf="@+id/backgroundFiltres"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="@+id/guideline17" />
 
     <TextView
@@ -107,7 +107,7 @@
         android:layout_marginTop="108dp"
         android:text="@string/aucun_filtre"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
-        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -115,7 +115,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="184dp"
         android:text="@string/Trouvé"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.88"
@@ -162,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="197dp" />
+        app:layout_constraintGuide_begin="210dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"
@@ -183,17 +183,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="238dp" />
+        app:layout_constraintGuide_begin="324dp" />
 
     <TextView
         android:id="@+id/TitreAccueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="@string/choisir_un_voyage"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -210,5 +209,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="115dp" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/date_de_d_part"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundFiltres"
+        app:layout_constraintStart_toStartOf="@+id/guideline13" />
+
+    <TextView
+        android:id="@+id/tvDateDep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/aucun_filtre"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundFiltres"
+        app:layout_constraintEnd_toStartOf="@+id/guideline19"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="@+id/guideline17" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,6 +43,7 @@ public class AccueilActivity extends AppCompatActivity {
     private TextView tvDestination;
     private TextView tvBudget;
     private TextView tvType;
+    private TextView tvDate;
 
 
 
@@ -67,6 +68,7 @@ public class AccueilActivity extends AppCompatActivity {
         tvDestination = findViewById(R.id.texteDestinationVoyage);
         tvBudget = findViewById(R.id.budgetVoyage);
         tvType = findViewById(R.id.typeVoyage);
+        tvDate = findViewById(R.id.tvDateDep);
         lvVoyages.setOnItemClickListener((parent, view, position, id) -> {
            Voyage voyage = (Voyage)parent.getItemAtPosition(position);
             System.out.println(voyage);
@@ -129,6 +131,8 @@ public class AccueilActivity extends AppCompatActivity {
         tvDestination.setText(destination);
         tvBudget.setText(budget[0]+"-"+budget[1]+" $");
         tvType.setText(type);
+        tvDate.setText(dateDepart);
+
 
 
         dataViewModel.trouverVoyages(destination, budget, type, dateDepart);
