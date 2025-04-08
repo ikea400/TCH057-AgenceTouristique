@@ -4,7 +4,7 @@
     <string name="telephone">Telephone</string>
     <string name="prenom">Prenom</string>
     <string name="nom">Nom</string>
-    <string name="password">Password</string>
+    <string name="password">Mot de passe</string>
     <string name="courriel">Courriel</string>
     <string name="age">Age</string>
     <string name="addresse">Addresse</string>
@@ -62,4 +62,7 @@
     <string name="entrez_votre_destination">Entrez votre destination</string>
     <string name="Trouvé">Résultat</string>
     <string name="aucun_filtre">Aucun filtre</string>
+    <string name="enregistrement">Enregistrement</string>
+    <string name="connexion">Connexion</string>
+    <string name="pas_de_compte">Pas de compte ?</string>
 </resources>

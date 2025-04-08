@@ -4,13 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 import com.natael_raphael_guillaume.tourisme.sqlite.DbUtil;
 import com.natael_raphael_guillaume.tourisme.sqlite.VoyageHistorique;
-
-import java.util.Collections;
-import java.util.List;
 
 public class HistoriqueDao {
     public static final String CONFIRMEE = "confirmée";

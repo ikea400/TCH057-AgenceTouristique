@@ -13,6 +13,8 @@ import androidx.annotation.IntRange;
 import com.natael_raphael_guillaume.tourisme.R;
 import com.natael_raphael_guillaume.tourisme.sqlite.VoyageHistorique;
 
+import java.util.Locale;
+
 public class HistoriqueAdapteur extends CursorAdapter {
 
     public HistoriqueAdapteur(Context context, Cursor c, int flags) {
@@ -44,7 +46,7 @@ public class HistoriqueAdapteur extends CursorAdapter {
 
         @IntRange(from = -1) int prixIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.PRIX);
         if (prixIndex >= 0) {
-            lblHistoryPrice.setText(String.format("%.2f$", cursor.getDouble(prixIndex)));
+            lblHistoryPrice.setText(String.format(Locale.getDefault(), "%.2f$", cursor.getDouble(prixIndex)));
         }
 
         @IntRange(from = -1) int statutIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.STATUT);

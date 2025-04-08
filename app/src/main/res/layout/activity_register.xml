@@ -39,8 +39,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enregistrement"
-        android:textSize="24dp"
+        android:text="@string/enregistrement"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -50,15 +50,15 @@
         android:id="@+id/editRegisterNom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints="name"
         android:ems="10"
-        android:hint="Nom"
+        android:hint="@string/nom"
         android:inputType="text"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        android:autofillHints="name"/>
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <EditText
         android:id="@+id/editRegisterPrenom"
@@ -67,7 +67,7 @@
         android:layout_marginTop="4dp"
         android:autofillHints="name"
         android:ems="10"
-        android:hint="Prénom"
+        android:hint="@string/prenom"
         android:inputType="text"
         android:text=""
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -79,22 +79,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:autofillHints="emailAddress"
         android:ems="10"
+        android:hint="@string/courriel"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editRegisterPrenom"
-        android:hint="Courriel"
-        android:autofillHints="emailAddress"/>
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterPrenom" />
 
     <EditText
         android:id="@+id/editRegisterAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Âge"
+        android:hint="@string/age"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
@@ -108,7 +109,7 @@
         android:layout_marginTop="4dp"
         android:autofillHints="phone"
         android:ems="10"
-        android:hint="Téléphone"
+        android:hint="@string/telephone"
         android:inputType="phone"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
@@ -122,7 +123,7 @@
         android:layout_marginTop="4dp"
         android:autofillHints="postalAddress"
         android:ems="10"
-        android:hint="Adresse"
+        android:hint="@string/addresse"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
@@ -134,24 +135,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:autofillHints="password"
         android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/editRegisterAddresse"
-        android:hint="Password"
-        android:autofillHints="password"/>
+        app:layout_constraintTop_toBottomOf="@+id/editRegisterAddresse" />
 
     <TextView
         android:id="@+id/registerError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Error"
+        android:text=""
+        android:textColor="#FF0000"
         app:layout_constraintBottom_toTopOf="@+id/editRegisterNom"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        android:textColor="#FF0000"/>
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btnDoRegister"
@@ -159,7 +160,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#4FC4CF"
-        android:text="S'enregistrer"
+        android:text="@string/s_enregistrer"
         android:textColor="#181818"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.497"
@@ -173,7 +174,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="#4FC4CF"
-        android:text="Se connecter"
+        android:text="@string/se_connecter"
         android:textColor="#181818"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/btnDoRegister" />

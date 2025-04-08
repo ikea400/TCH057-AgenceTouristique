@@ -4,7 +4,6 @@ import com.natael_raphael_guillaume.tourisme.modele.entite.Client;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

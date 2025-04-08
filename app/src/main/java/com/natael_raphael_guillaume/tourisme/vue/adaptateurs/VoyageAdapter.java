@@ -19,6 +19,7 @@ import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -65,7 +66,7 @@ public class VoyageAdapter extends ArrayAdapter<Voyage> {
 
             titre.setText(voyage.getNom_voyage());
             destination.setText(voyage.getDestination());
-            prix.setText(voyage.getPrix() + "$");
+            prix.setText(String.format(Locale.getDefault(), "%.2f$", voyage.getPrix()));
             description.setText(voyage.getDescription());
 
             // get the image from the web using okhttp inside a thread to not freeze the app

@@ -25,6 +25,7 @@ import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AccueilActivity extends AppCompatActivity {
     private Button btnFiltres;
@@ -44,9 +45,6 @@ public class AccueilActivity extends AppCompatActivity {
     private TextView tvBudget;
     private TextView tvType;
     private TextView tvDate;
-
-
-
 
 
     @Override
@@ -70,7 +68,7 @@ public class AccueilActivity extends AppCompatActivity {
         tvType = findViewById(R.id.typeVoyage);
         tvDate = findViewById(R.id.tvDateDep);
         lvVoyages.setOnItemClickListener((parent, view, position, id) -> {
-           Voyage voyage = (Voyage)parent.getItemAtPosition(position);
+            Voyage voyage = (Voyage) parent.getItemAtPosition(position);
             System.out.println(voyage);
             Intent intent = new Intent(this, DetailActivity.class);
             intent.putExtra("VOYAGE", voyage);
@@ -129,10 +127,9 @@ public class AccueilActivity extends AppCompatActivity {
         budget = resultIntent.getIntArrayExtra("BUDGET");
 
         tvDestination.setText(destination);
-        tvBudget.setText(budget[0]+"-"+budget[1]+" $");
+        tvBudget.setText(String.format(Locale.getDefault(), "%d-%d $", budget[0], budget[1]));
         tvType.setText(type);
         tvDate.setText(dateDepart);
-
 
 
         dataViewModel.trouverVoyages(destination, budget, type, dateDepart);

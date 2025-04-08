@@ -32,6 +32,7 @@ import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import okhttp3.OkHttpClient;
@@ -80,9 +81,9 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        lblPrixDetailVoyage.setText(String.format("%.1f$/Personne", voyage.getPrix()));
+        lblPrixDetailVoyage.setText(String.format(Locale.getDefault(), "%.2f$/Personne", voyage.getPrix()));
         lblDestinationDetailVoyage.setText(voyage.getDestination());
-        lblDureeDetailVoyage.setText(voyage.getDuree_jours() + " jours");
+        lblDureeDetailVoyage.setText(String.format(Locale.getDefault(), "%d jours", voyage.getDuree_jours()));
         lblDescriptionDetailVoyage.setText(voyage.getDescription());
         btnDetailReserver.setOnClickListener(this::onReserverClicked);
         btnDetailReserver.setVisibility(INVISIBLE);

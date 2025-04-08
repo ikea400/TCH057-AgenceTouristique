@@ -1,5 +1,7 @@
 package com.natael_raphael_guillaume.tourisme.modele.entite;
 
+import androidx.annotation.NonNull;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -92,6 +94,7 @@ public class Client {
         this.id = id;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Client{" +
