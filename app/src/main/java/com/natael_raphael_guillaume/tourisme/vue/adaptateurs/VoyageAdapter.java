@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.natael_raphael_guillaume.tourisme.R;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 
@@ -70,7 +72,11 @@ public class VoyageAdapter extends ArrayAdapter<Voyage> {
             description.setText(voyage.getDescription());
 
             // get the image from the web using okhttp inside a thread to not freeze the app
-            new Thread(() -> {
+            Glide.with(view)
+                    .load(voyage.getImage_url())
+                    .apply(new RequestOptions().placeholder(R.drawable.ic_launcher_foreground))//this line optional - you can skip this line
+                    .into(image);
+            /*new Thread(() -> {
                 Request request = new Request.Builder().url(voyage.getImage_url()).build();
                 try (Response response = client.newCall(request).execute()) {
                     if (!response.isSuccessful() || response.body() == null) {
@@ -89,7 +95,7 @@ public class VoyageAdapter extends ArrayAdapter<Voyage> {
                     e.printStackTrace();
                     image.post(() -> image.setImageResource(R.drawable.ic_launcher_foreground));
                 }
-            }).start();
+            }).start();*/
         }
         return view;
     }
