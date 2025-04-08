@@ -1,10 +1,13 @@
 package com.natael_raphael_guillaume.tourisme.vue.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +26,13 @@ import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
 import com.natael_raphael_guillaume.tourisme.viewModele.EcouteurDeDonnees;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class DetailActivity extends AppCompatActivity {
     private TextView lblPrixDetailVoyage;
@@ -33,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView lblDescriptionDetailVoyage;
     private Spinner spDetailDates;
     private Button btnDetailReserver;
+    private ImageView imageDetailVoyage;
 
     private Voyage voyage;
     private DataViewModel dataViewModel;
@@ -55,6 +64,7 @@ public class DetailActivity extends AppCompatActivity {
         lblDescriptionDetailVoyage = findViewById(R.id.lblDescriptionDetailVoyage);
         spDetailDates = findViewById(R.id.spDetailDates);
         btnDetailReserver = findViewById(R.id.btnDetailReserver);
+        imageDetailVoyage = findViewById(R.id.ImageDetailVoyage);
 
         Intent intent = getIntent();
         voyage = (Voyage) intent.getSerializableExtra("VOYAGE");
@@ -68,6 +78,7 @@ public class DetailActivity extends AppCompatActivity {
         lblDureeDetailVoyage.setText(voyage.getDuree_jours() + " jours");
         lblDescriptionDetailVoyage.setText(voyage.getDescription());
         btnDetailReserver.setOnClickListener(this::onReserverClicked);
+        getImageFromWeb(imageDetailVoyage);
 
         List<String> trips = voyage.getTrips().stream()
                 .map(DetailActivity::formatTrip)
@@ -105,5 +116,27 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         System.out.println(message);
     }
-
+    private void getImageFromWeb(ImageView image) {
+        OkHttpClient client = new OkHttpClient();
+        new Thread(() -> {
+            Request request = new Request.Builder().url(voyage.getImage_url()).build();
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful() || response.body() == null) {
+                    throw new IOException("Error with image thread " + response);
+                }
+                final Bitmap bitmap = BitmapFactory.decodeStream(response.body().byteStream());
+                // update UI on the main thread
+                image.post(() -> {
+                    if (bitmap != null) {
+                        image.setImageBitmap(bitmap);
+                    } else {
+                        image.setImageResource(R.drawable.ic_launcher_foreground); // placeholder if image fails to load
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+                image.post(() -> image.setImageResource(R.drawable.ic_launcher_foreground));
+            }
+        }).start();
+    }
 }

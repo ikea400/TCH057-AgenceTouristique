@@ -6,140 +6,140 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/BackgroundDetailVoyage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="-20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/lblDescriptionDetailVoyage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageDetailVoyage" />
+
+    <ImageView
+        android:id="@+id/ImageDetailVoyage"
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/lblPrixDetailVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="$200/Personne"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TitreDetailVoyage" />
 
-            <View
-                android:id="@+id/BackgroundDetailVoyage"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="-20dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintBottom_toBottomOf="@+id/lblDescriptionDetailVoyage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+    <TextView
+        android:id="@+id/lblTexteDestinationDetailVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:text="Destination:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
 
-            <ImageView
-                android:id="@+id/ImageDetailVoyage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/TexteDureeDetailVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="25dp"
+        android:text="Duree:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTexteDestinationDetailVoyage" />
 
-            <TextView
-                android:id="@+id/TitreDetailVoyage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:text="Titre"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ImageDetailVoyage" />
+    <TextView
+        android:id="@+id/lblDescriptionDetailVoyage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="60dp"
+        android:height="50dp"
+        android:text="Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TexteDureeDetailVoyage"
+        app:layout_wrapBehaviorInParent="included" />
 
-            <TextView
-                android:id="@+id/lblPrixDetailVoyage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:text="$200/Personne"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TitreDetailVoyage" />
+    <TextView
+        android:id="@+id/lblDestinationDetailVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="30dp"
+        android:text="Shangai"
+        app:layout_constraintStart_toEndOf="@+id/lblTexteDestinationDetailVoyage"
+        app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
 
-            <TextView
-                android:id="@+id/lblTexteDestinationDetailVoyage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="30dp"
-                android:text="Destination:"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
+    <TextView
+        android:id="@+id/lblDureeDetailVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="26dp"
+        android:text="15h"
+        app:layout_constraintStart_toEndOf="@+id/TexteDureeDetailVoyage"
+        app:layout_constraintTop_toBottomOf="@+id/lblDestinationDetailVoyage" />
 
-            <TextView
-                android:id="@+id/TexteDureeDetailVoyage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="25dp"
-                android:text="Duree:"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblTexteDestinationDetailVoyage" />
+    <Spinner
+        android:id="@+id/spDetailDates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/BackgroundDetailVoyage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lblDescriptionDetailVoyage"
+        app:layout_constraintTop_toBottomOf="@+id/BackgroundDetailVoyage" />
 
-            <TextView
-                android:id="@+id/lblDescriptionDetailVoyage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="60dp"
-                android:height="50dp"
-                android:text="Description"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TexteDureeDetailVoyage"
-                app:layout_wrapBehaviorInParent="included" />
+    <Button
+        android:id="@+id/btnDetailReserver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Réserver maintenant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spDetailDates" />
 
-            <TextView
-                android:id="@+id/lblDestinationDetailVoyage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="78dp"
-                android:layout_marginTop="30dp"
-                android:text="Shangai"
-                app:layout_constraintStart_toEndOf="@+id/lblTexteDestinationDetailVoyage"
-                app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
+    <TextView
+        android:id="@+id/TitreDetailVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Titre"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/BackgroundDetailVoyage"
+        app:layout_constraintStart_toStartOf="@+id/BackgroundDetailVoyage"
+        app:layout_constraintTop_toTopOf="@+id/BackgroundDetailVoyage" />
 
-            <TextView
-                android:id="@+id/lblDureeDetailVoyage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="113dp"
-                android:layout_marginTop="26dp"
-                android:text="15h"
-                app:layout_constraintStart_toEndOf="@+id/TexteDureeDetailVoyage"
-                app:layout_constraintTop_toBottomOf="@+id/lblDestinationDetailVoyage" />
-
-            <Spinner
-                android:id="@+id/spDetailDates"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/BackgroundDetailVoyage"
-                app:layout_constraintStart_toStartOf="@+id/lblDescriptionDetailVoyage"
-                app:layout_constraintTop_toBottomOf="@+id/lblDescriptionDetailVoyage" />
-
-            <Button
-                android:id="@+id/btnDetailReserver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Réserver maintenant"
-                app:layout_constraintBottom_toBottomOf="@+id/BackgroundDetailVoyage"
-                app:layout_constraintEnd_toEndOf="@+id/spDetailDates"
-                app:layout_constraintStart_toStartOf="@+id/spDetailDates" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    <EditText
+        android:id="@+id/nbDePersonnesDetailVoyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:hint="Nombre de personnes"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnDetailReserver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spDetailDates" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
