@@ -26,15 +26,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="70dp" />
+        app:layout_constraintGuide_begin="35dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Filtres"
+        android:text="@string/filtresTitre"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
@@ -42,6 +43,7 @@
         android:id="@+id/budgetRange"
         android:layout_width="325dp"
         android:layout_height="45dp"
+        android:contentDescription="@string/budget"
         android:stepSize="50"
         android:valueFrom="0"
         android:valueTo="1000"
@@ -57,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Prix"
+        android:text="@string/prix"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -84,16 +86,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Destination"
+        android:text="@string/destinationFiltres"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <AutoCompleteTextView
         android:id="@+id/destinationEdit"
         android:layout_width="331dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:completionThreshold="1"
-        android:hint="Enter text"
+        android:hint="@string/enter_text"
+        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -113,14 +116,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Type"
+        android:text="@string/type"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
     <Spinner
         android:id="@+id/typeSpinner"
         android:layout_width="328dp"
-        android:layout_height="24dp"
+        android:layout_height="48dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintHorizontal_bias="0.333"
@@ -140,33 +143,35 @@
     <CalendarView
         android:id="@+id/cvFilterDate"
         android:layout_width="330dp"
-        android:layout_height="331dp"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbFilterDate"/>
+        app:layout_constraintTop_toBottomOf="@+id/cbFilterDate" />
 
     <Button
         android:id="@+id/btnFilterConfirm"
         android:layout_width="157dp"
         android:layout_height="50dp"
-        android:text="Confirmer"
+        android:text="@string/confirmer"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/cvFilterDate" />
+        app:layout_constraintTop_toBottomOf="@+id/cvFilterDate"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnFilterCancel"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:text="Annuler"
+        android:text="@string/annuler"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/cvFilterDate" />
+        app:layout_constraintTop_toBottomOf="@+id/cvFilterDate"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <CheckBox
         android:id="@+id/cbFilterDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date de départ"
+        android:text="@string/date_de_d_part"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
 

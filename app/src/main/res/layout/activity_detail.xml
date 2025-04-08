@@ -26,6 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="175dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="$200/Personne"
+        android:text="@string/_200_personne"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/TitreDetailVoyage" />
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="30dp"
-        android:text="Destination:"
+        android:text="@string/destinationDetail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
 
@@ -57,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="25dp"
-        android:text="Duree:"
+        android:text="@string/duree"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblTexteDestinationDetailVoyage" />
 
@@ -69,7 +70,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="60dp"
         android:height="50dp"
-        android:text="Description"
+        android:text="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/TexteDureeDetailVoyage"
@@ -81,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="78dp"
         android:layout_marginTop="30dp"
-        android:text="Shangai"
+        android:text="@string/shangai"
         app:layout_constraintStart_toEndOf="@+id/lblTexteDestinationDetailVoyage"
         app:layout_constraintTop_toBottomOf="@+id/lblPrixDetailVoyage" />
 
@@ -91,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="113dp"
         android:layout_marginTop="26dp"
-        android:text="15h"
+        android:text="@string/_15h"
         app:layout_constraintStart_toEndOf="@+id/TexteDureeDetailVoyage"
         app:layout_constraintTop_toBottomOf="@+id/lblDestinationDetailVoyage" />
 
@@ -111,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Réserver maintenant"
+        android:text="@string/r_server_maintenant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spDetailDates" />
@@ -121,7 +122,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Titre"
+        android:text="@string/titre"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/BackgroundDetailVoyage"
         app:layout_constraintStart_toStartOf="@+id/BackgroundDetailVoyage"
@@ -134,10 +135,12 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Nombre de personnes"
+        android:hint="@string/nombre_de_personnes"
         android:inputType="number"
         android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         app:layout_constraintBottom_toTopOf="@+id/btnDetailReserver"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spDetailDates" />

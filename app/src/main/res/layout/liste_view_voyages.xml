@@ -19,6 +19,7 @@
         android:layout_height="130dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:contentDescription="@string/imageDesc"
         app:layout_constraintStart_toStartOf="@+id/divider2"
         app:layout_constraintTop_toTopOf="@+id/divider2"
         tools:srcCompat="@tools:sample/avatars" />
@@ -28,7 +29,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Titre"
+        android:text="@string/titreDetail"
         app:layout_constraintEnd_toEndOf="@+id/divider2"
         app:layout_constraintStart_toEndOf="@+id/detailImage"
         app:layout_constraintTop_toTopOf="@+id/divider2"
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="Destination:"
+        android:text="@string/destinationTexteDetail"
         app:layout_constraintStart_toEndOf="@+id/detailImage"
         app:layout_constraintTop_toBottomOf="@+id/detailTitre" />
 
@@ -49,7 +50,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="ton pere"
+        android:text="@string/texteDestination"
         app:layout_constraintStart_toStartOf="@+id/texteDetailDestination"
         app:layout_constraintTop_toBottomOf="@+id/texteDetailDestination"
         app:layout_wrapBehaviorInParent="included" />
@@ -59,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Prix:"
+        android:text="@string/prixDetailTexte"
         app:layout_constraintStart_toStartOf="@+id/detailDescription"
         app:layout_constraintTop_toBottomOf="@+id/detailImage" />
 
@@ -69,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
-        android:text="10$"
+        android:text="@string/prixDetail"
         app:layout_constraintStart_toEndOf="@+id/texteDetailPrix"
         app:layout_constraintTop_toBottomOf="@+id/detailImage" />
 
@@ -78,7 +79,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="Description du voyage"
+        android:text="@string/description_du_voyage"
         app:layout_constraintBottom_toBottomOf="@+id/divider2"
         app:layout_constraintEnd_toEndOf="@+id/divider2"
         app:layout_constraintStart_toStartOf="@+id/divider2"
