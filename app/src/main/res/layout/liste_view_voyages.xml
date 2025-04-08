@@ -56,12 +56,12 @@
 
     <TextView
         android:id="@+id/detailDestination"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="60dp"
         android:text="ton pere"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textColor="#f2eef5"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="@+id/guideline24"

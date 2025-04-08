@@ -61,4 +61,5 @@
     <string name="Aventure">Aventure</string>
     <string name="entrez_votre_destination">Entrez votre destination</string>
     <string name="Trouvé">Trouvé</string>
+    <string name="aucun_filtre">Aucun filtre</string>
 </resources>

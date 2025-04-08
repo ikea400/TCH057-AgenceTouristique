@@ -110,9 +110,11 @@
     <Button
         android:id="@+id/btnDetailReserver"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="80dp"
+        android:backgroundTint="#4FC4CF"
         android:text="@string/r_server_maintenant"
+        android:textColor="#181818"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spDetailDates" />
@@ -143,6 +145,7 @@
         android:textColorHint="#546E7A"
         app:layout_constraintBottom_toTopOf="@+id/btnDetailReserver"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spDetailDates" />
+        app:layout_constraintTop_toBottomOf="@+id/spDetailDates"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

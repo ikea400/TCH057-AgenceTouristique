@@ -40,6 +40,14 @@ public class AccueilActivity extends AppCompatActivity {
     private String dateDepart;
     private int[] budget;
 
+    private TextView tvDestination;
+    private TextView tvBudget;
+    private TextView tvType;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +64,9 @@ public class AccueilActivity extends AppCompatActivity {
         btnFiltres = findViewById(R.id.btnFiltres);
         btnHistorique = findViewById(R.id.btnHistorique);
         lvVoyages = findViewById(R.id.listeViewVoyages);
-
+        tvDestination = findViewById(R.id.texteDestinationVoyage);
+        tvBudget = findViewById(R.id.budgetVoyage);
+        tvType = findViewById(R.id.typeVoyage);
         lvVoyages.setOnItemClickListener((parent, view, position, id) -> {
            Voyage voyage = (Voyage)parent.getItemAtPosition(position);
             System.out.println(voyage);
@@ -115,6 +125,11 @@ public class AccueilActivity extends AppCompatActivity {
         type = resultIntent.getStringExtra("TYPE");
         dateDepart = resultIntent.getStringExtra("DATE");
         budget = resultIntent.getIntArrayExtra("BUDGET");
+
+        tvDestination.setText(destination);
+        tvBudget.setText(budget[0]+"-"+budget[1]+" $");
+        tvType.setText(type);
+
 
         dataViewModel.trouverVoyages(destination, budget, type, dateDepart);
     }
