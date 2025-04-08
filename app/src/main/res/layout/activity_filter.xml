@@ -32,7 +32,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Filtres"
+        android:text="@string/filtres"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Prix"
+        android:text="@string/prix"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -92,9 +92,9 @@
     <AutoCompleteTextView
         android:id="@+id/destinationEdit"
         android:layout_width="331dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:completionThreshold="1"
-        android:hint="Enter text"
+        android:hint="@string/entrez_votre_destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -114,14 +114,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Type"
+        android:text="@string/type"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
     <Spinner
         android:id="@+id/typeSpinner"
         android:layout_width="328dp"
-        android:layout_height="24dp"
+        android:layout_height="48dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintHorizontal_bias="0.333"
@@ -153,7 +153,7 @@
         android:layout_width="157dp"
         android:layout_height="50dp"
         android:backgroundTint="#4FC4CF"
-        android:text="Confirmer"
+        android:text="@string/confirmer"
         android:textColor="#181818"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toBottomOf="@+id/cvFilterDate" />
@@ -163,7 +163,7 @@
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:backgroundTint="#4FC4CF"
-        android:text="Annuler"
+        android:text="@string/annuler"
         android:textColor="#181818"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/cvFilterDate" />

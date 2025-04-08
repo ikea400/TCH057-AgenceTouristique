@@ -56,4 +56,8 @@
     <string name="titreDetail">Titre</string>
     <string name="destinationTexteDetail">Destination:</string>
     <string name="prixDetailTexte">Prix:</string>
+    <string name="rechercher_un_voyage">Rechercher un voyage</string>
+    <string name="Québec">Québec</string>
+    <string name="Aventure">Aventure</string>
+    <string name="entrez_votre_destination">Entrez votre destination</string>
 </resources>

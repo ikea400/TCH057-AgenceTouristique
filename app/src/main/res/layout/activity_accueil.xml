@@ -33,7 +33,7 @@
         android:layout_marginTop="172dp"
         android:layout_marginEnd="108dp"
         android:ems="10"
-        android:hint="Rechercher un voyage"
+        android:hint="@string/rechercher_un_voyage"
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline16"
@@ -53,11 +53,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/texteType"
+        android:id="@+id/texteDestinationVoyage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="39dp"
-        android:text="Ton pere"
+        android:text="@string/Québec"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintStart_toEndOf="@+id/texteDestination"
         app:layout_constraintTop_toTopOf="@+id/backgroundFiltres" />
@@ -67,9 +67,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="71dp"
-        android:text="Aventure"
+        android:text="@string/Aventure"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
-        app:layout_constraintStart_toEndOf="@+id/texteType"
+        app:layout_constraintStart_toEndOf="@+id/texteDestinationVoyage"
         app:layout_constraintTop_toTopOf="@+id/backgroundFiltres" />
 
     <TextView
@@ -77,18 +77,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="10$"
+        android:text="@string/_10"
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
         app:layout_constraintStart_toEndOf="@+id/texteBudget"
         app:layout_constraintTop_toTopOf="@+id/backgroundFiltres" />
 
     <TextView
-        android:id="@+id/texteType"
+        android:id="@+id/texteTypeVoyage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
-        android:text="Type de voyage:"
+        android:text="@string/type_de_voyage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texteDestination" />
 
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
-        android:text="Destination:"
+        android:text="@string/destination"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texteBudget" />
 
@@ -109,7 +109,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="36dp"
         android:backgroundTint="#FBDD74"
-        android:text="Filtres"
+        android:text="@"
         android:textColor="#181818"
         app:layout_constraintEnd_toEndOf="@+id/backgroundFiltres"
         app:layout_constraintTop_toTopOf="@+id/backgroundFiltres" />
@@ -202,10 +202,11 @@
         android:id="@+id/TitreAccueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="4dp"
         android:text="@string/choisir_un_voyage"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
