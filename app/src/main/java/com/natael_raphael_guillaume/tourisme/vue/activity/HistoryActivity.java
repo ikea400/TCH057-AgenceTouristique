@@ -2,7 +2,6 @@ package com.natael_raphael_guillaume.tourisme.vue.activity;
 
 import static android.widget.CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.IntRange;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -34,7 +32,6 @@ public class HistoryActivity extends AppCompatActivity {
 
     private String historiqueId;
 
-    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

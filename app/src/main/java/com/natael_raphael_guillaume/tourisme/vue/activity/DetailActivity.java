@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,10 +27,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.natael_raphael_guillaume.tourisme.R;
 import com.natael_raphael_guillaume.tourisme.modele.dao.HistoriqueDao;
-import com.natael_raphael_guillaume.tourisme.modele.dao.VoyageDao;
 import com.natael_raphael_guillaume.tourisme.modele.entite.Voyage;
 import com.natael_raphael_guillaume.tourisme.viewModele.DataViewModel;
-import com.natael_raphael_guillaume.tourisme.viewModele.EcouteurDeDonnees;
 
 import java.io.IOException;
 import java.util.List;
