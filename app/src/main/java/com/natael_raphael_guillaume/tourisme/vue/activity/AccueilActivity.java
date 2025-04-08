@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -26,8 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccueilActivity extends AppCompatActivity {
-
-    private TextView textView8;
     private Button btnFiltres;
     private Button btnHistorique;
     private DataViewModel dataViewModel;
@@ -54,7 +53,6 @@ public class AccueilActivity extends AppCompatActivity {
 
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onFilterResult);
 
-        textView8 = findViewById(R.id.textView8);
         btnFiltres = findViewById(R.id.btnFiltres);
         btnHistorique = findViewById(R.id.btnHistorique);
         lvVoyages = findViewById(R.id.listeViewVoyages);
@@ -92,7 +90,6 @@ public class AccueilActivity extends AppCompatActivity {
 
     public void afficherMessage(String message) {
         //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        textView8.setText(message);
     }
 
     public void onFiltreClicked(View view) {
