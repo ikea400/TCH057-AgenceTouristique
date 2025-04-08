@@ -57,6 +57,8 @@ public class RegisterActivity extends AppCompatActivity {
         btnDoRegister = findViewById(R.id.btnDoRegister);
         btnGoLogin = findViewById(R.id.btnGoLogin);
 
+        registerError.setText("");
+
         // Initialisation du ViewModel
         clientViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 

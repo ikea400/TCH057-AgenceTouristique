@@ -1,12 +1,19 @@
 package com.natael_raphael_guillaume.tourisme.vue.activity;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,10 +49,12 @@ public class DetailActivity extends AppCompatActivity {
     private Spinner spDetailDates;
     private Button btnDetailReserver;
     private ImageView imageDetailVoyage;
+    private EditText nbDePersonnesDetailVoyage;
 
     private Voyage voyage;
     private DataViewModel dataViewModel;
     private Voyage.Trip trip;
+    private int nbPersonnes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +74,7 @@ public class DetailActivity extends AppCompatActivity {
         spDetailDates = findViewById(R.id.spDetailDates);
         btnDetailReserver = findViewById(R.id.btnDetailReserver);
         imageDetailVoyage = findViewById(R.id.ImageDetailVoyage);
+        nbDePersonnesDetailVoyage = findViewById(R.id.nbDePersonnesDetailVoyage);
 
         Intent intent = getIntent();
         voyage = (Voyage) intent.getSerializableExtra("VOYAGE");
@@ -78,21 +88,41 @@ public class DetailActivity extends AppCompatActivity {
         lblDureeDetailVoyage.setText(voyage.getDuree_jours() + " jours");
         lblDescriptionDetailVoyage.setText(voyage.getDescription());
         btnDetailReserver.setOnClickListener(this::onReserverClicked);
+        btnDetailReserver.setVisibility(INVISIBLE);
+
+        nbDePersonnesDetailVoyage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String text = s.toString();
+                System.out.println(text);
+                nbPersonnes = text.isBlank() ? 0 : Integer.parseInt(text);
+
+                Voyage.Trip trip = voyage.getTrips().get(spDetailDates.getSelectedItemPosition());
+
+                btnDetailReserver.setVisibility(nbPersonnes <= trip.getNb_places_disponibles() ? VISIBLE : INVISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         getImageFromWeb(imageDetailVoyage);
 
-        List<String> trips = voyage.getTrips().stream()
-                .map(DetailActivity::formatTrip)
-                .collect(Collectors.toList());
+        List<String> trips = voyage.getTrips().stream().map(DetailActivity::formatTrip).collect(Collectors.toList());
 
-        ArrayAdapter<String> adapteur = new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line, trips);
+        ArrayAdapter<String> adapteur = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, trips);
         spDetailDates.setAdapter(adapteur);
 
         dataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         // Observer les LiveData
         dataViewModel.getVoyages().observe(this, voyages -> {
-            HistoriqueDao.addHistorique(this, voyage.getId(), voyage.getDestination(), trip.getDate(), voyage.getPrix());
+            HistoriqueDao.addHistorique(this, voyage.getId(), voyage.getDestination(), trip.getDate(), voyage.getPrix() * nbPersonnes);
             finish();
         });
 
@@ -100,15 +130,17 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public static String formatTrip(Voyage.Trip trip) {
-        return String.format("%s %s places restantes",
-                trip.getDate(),
-                trip.getNb_places_disponibles());
+        if (trip.getNb_places_disponibles() > 0) {
+            return String.format("%s %s places restantes", trip.getDate(), trip.getNb_places_disponibles());
+        } else {
+            return String.format("%s plein", trip.getDate());
+        }
     }
 
     public void onReserverClicked(View view) {
         trip = voyage.getTrips().get(spDetailDates.getSelectedItemPosition());
         if (trip.getNb_places_disponibles() > 0) {
-            dataViewModel.reserverVoyage(voyage.getId(), trip.getDate());
+            dataViewModel.reserverVoyage(voyage.getId(), trip.getDate(), nbPersonnes);
         }
     }
 
@@ -116,6 +148,7 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         System.out.println(message);
     }
+
     private void getImageFromWeb(ImageView image) {
         OkHttpClient client = new OkHttpClient();
         new Thread(() -> {

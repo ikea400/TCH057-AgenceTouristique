@@ -46,35 +46,33 @@ public class HistoryActivity extends AppCompatActivity {
 
         lvHistorique.setOnItemClickListener((parent, view, position, id) -> {
 
+            Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+
+            @IntRange(from = -1) int statutIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.STATUT);
+            @IntRange(from = -1) int dateIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.DATE);
+
+            if (dateIndex < 0 || statutIndex < 0 || !cursor.getString(statutIndex).equals(HistoriqueDao.CONFIRMEE)) {
+                return;
+            }
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             builder.setTitle("Annuler la réservation");
             builder.setMessage("Êtes-vous sûr de vouloir annuler votre réservation ? Cette action est irréversible.");
 
             builder.setPositiveButton("Oui", (dialog, which) -> {
-                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
                 @IntRange(from = -1) int idIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.ID);
-                System.out.println(idIndex);
-
                 @IntRange(from = -1) int voyageIdIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.VOYAGE_ID);
-                System.out.println(voyageIdIndex);
+                @IntRange(from = -1) int prixIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.PRIX);
 
-                @IntRange(from = -1) int dateIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.DATE);
-                System.out.println(dateIndex);
-
-
-                @IntRange(from = -1) int statutIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.STATUT);
-                System.out.println(statutIndex);
-
-                if (statutIndex >= 0 && idIndex >= 0 && voyageIdIndex >= 0 && dateIndex >= 0) {
-                    @SuppressLint("Range") String statut = cursor.getString(statutIndex);
-                    if (!statut.equalsIgnoreCase(HistoriqueDao.CONFIRMEE)) return;
-
+                if (idIndex >= 0 && voyageIdIndex >= 0 && prixIndex >= 0) {
                     historiqueId = cursor.getString(idIndex);
 
-                    System.out.println(cursor.getString(dateIndex));
-                    dataViewModel.annulerVoyage(cursor.getString(voyageIdIndex), cursor.getString(dateIndex));
+                    // TODO
+                    //int nbPersonnes = cursor.getDouble(prixIndex)
+
+                    dataViewModel.annulerVoyage(cursor.getString(voyageIdIndex), cursor.getString(dateIndex), 1);
                 }
             });
 

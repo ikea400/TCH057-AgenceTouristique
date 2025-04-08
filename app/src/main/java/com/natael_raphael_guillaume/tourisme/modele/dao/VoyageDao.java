@@ -12,14 +12,14 @@ public class VoyageDao {
         HttpJsonService.getVoyages(destination, budget, type, dateDepart, chargeurDeDonnees);
     }
 
-    public static void reserverVoyages(String id, String dateDepart, EcouteurDeDonnees ecouteurDeDonnees)
+    public static void reserverVoyages(String id, String dateDepart, int nbPersonnes, EcouteurDeDonnees ecouteurDeDonnees)
             throws JSONException, IOException{
-        HttpJsonService.modifierVoyagePlaces(id, dateDepart, -1, ecouteurDeDonnees);
+        HttpJsonService.modifierVoyagePlaces(id, dateDepart, -nbPersonnes, ecouteurDeDonnees);
     }
 
-    public static void annulerVoyages(String id, String dateDepart, EcouteurDeDonnees ecouteurDeDonnees)
+    public static void annulerVoyages(String id, String dateDepart, int nbPersonnes, EcouteurDeDonnees ecouteurDeDonnees)
             throws JSONException, IOException{
-        HttpJsonService.modifierVoyagePlaces(id, dateDepart, 1, ecouteurDeDonnees);
+        HttpJsonService.modifierVoyagePlaces(id, dateDepart, nbPersonnes, ecouteurDeDonnees);
     }
 
 

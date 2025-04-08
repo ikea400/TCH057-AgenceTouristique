@@ -14,5 +14,6 @@ public class VoyageHistorique {
         public static final String PRIX = "PRIX";
         public static final String STATUT = "STATUT";
         public static final String DATE = "DATE";
+        public static final String PERSONNES = "PERSONNES";
     }
 }

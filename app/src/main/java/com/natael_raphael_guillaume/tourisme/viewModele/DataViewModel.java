@@ -106,9 +106,9 @@ public class DataViewModel extends ViewModel {
         }
     }
 
-    public void reserverVoyage(String id, String dateDepart) {
+    public void reserverVoyage(String id, String dateDepart, int nbPersonnes) {
         try {
-            VoyageDao.reserverVoyages(id, dateDepart, new EcouteurDeDonnees() {
+            VoyageDao.reserverVoyages(id, dateDepart, nbPersonnes, new EcouteurDeDonnees() {
                 @Override
                 public void onDataLoaded(Object data) {
                     Voyage voyage = (Voyage) data;
@@ -137,9 +137,9 @@ public class DataViewModel extends ViewModel {
         }
     }
 
-    public void annulerVoyage(String id, String dateDepart) {
+    public void annulerVoyage(String id, String dateDepart, int nbPersonnes) {
         try {
-            VoyageDao.annulerVoyages(id, dateDepart, new EcouteurDeDonnees() {
+            VoyageDao.annulerVoyages(id, dateDepart, nbPersonnes, new EcouteurDeDonnees() {
                 @Override
                 public void onDataLoaded(Object data) {
                     Voyage voyage = (Voyage) data;

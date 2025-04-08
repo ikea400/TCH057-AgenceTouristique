@@ -44,7 +44,7 @@ public class HistoriqueAdapteur extends CursorAdapter {
 
         @IntRange(from = -1) int prixIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.PRIX);
         if (prixIndex >= 0) {
-            lblHistoryPrice.setText(cursor.getString(prixIndex));
+            lblHistoryPrice.setText(String.format("%.2f$", cursor.getDouble(prixIndex)));
         }
 
         @IntRange(from = -1) int statutIndex = cursor.getColumnIndex(VoyageHistorique.Colonnes.STATUT);
