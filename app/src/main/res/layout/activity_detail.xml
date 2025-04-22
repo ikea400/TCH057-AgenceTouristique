@@ -148,4 +148,14 @@
         app:layout_constraintTop_toBottomOf="@+id/spDetailDates"
         app:layout_constraintVertical_bias="1.0" />
 
+    <TextView
+        android:id="@+id/lblPrixFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="28dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/btnDetailReserver"
+        app:layout_constraintStart_toEndOf="@+id/nbDePersonnesDetailVoyage" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

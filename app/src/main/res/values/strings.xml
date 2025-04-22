@@ -65,4 +65,5 @@
     <string name="enregistrement">Enregistrement</string>
     <string name="connexion">Connexion</string>
     <string name="pas_de_compte">Pas de compte ?</string>
+    <string name="annuler_tip">Cliquer sur une réservation pour pouvoir l\'annuler</string>
 </resources>

@@ -46,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView lblDestinationDetailVoyage;
     private TextView lblDureeDetailVoyage;
     private TextView lblDescriptionDetailVoyage;
+    private TextView lblPrixFinal;
     private Spinner spDetailDates;
     private Button btnDetailReserver;
     private ImageView imageDetailVoyage;
@@ -75,6 +76,7 @@ public class DetailActivity extends AppCompatActivity {
         btnDetailReserver = findViewById(R.id.btnDetailReserver);
         imageDetailVoyage = findViewById(R.id.ImageDetailVoyage);
         nbDePersonnesDetailVoyage = findViewById(R.id.nbDePersonnesDetailVoyage);
+        lblPrixFinal = findViewById(R.id.lblPrixFinal);
 
         Intent intent = getIntent();
         voyage = (Voyage) intent.getSerializableExtra("VOYAGE");
@@ -87,6 +89,7 @@ public class DetailActivity extends AppCompatActivity {
         lblDestinationDetailVoyage.setText(voyage.getDestination());
         lblDureeDetailVoyage.setText(String.format(Locale.getDefault(), "%d jours", voyage.getDuree_jours()));
         lblDescriptionDetailVoyage.setText(voyage.getDescription());
+        lblPrixFinal.setText("");
         btnDetailReserver.setOnClickListener(this::onReserverClicked);
         btnDetailReserver.setVisibility(INVISIBLE);
 
@@ -104,6 +107,11 @@ public class DetailActivity extends AppCompatActivity {
                 Voyage.Trip trip = voyage.getTrips().get(spDetailDates.getSelectedItemPosition());
 
                 btnDetailReserver.setVisibility(nbPersonnes <= trip.getNb_places_disponibles() ? VISIBLE : INVISIBLE);
+                if (nbPersonnes > 0) {
+                    lblPrixFinal.setText(String.format(Locale.getDefault(), "%.2f $", nbPersonnes * voyage.getPrix()));
+                } else {
+                    lblPrixFinal.setText("");
+                }
             }
 
             @Override
